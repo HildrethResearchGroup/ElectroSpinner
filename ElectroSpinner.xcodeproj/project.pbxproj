@@ -11,6 +11,11 @@
 		C0B85A732403531C0082E43E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B85A722403531C0082E43E /* Assets.xcassets */; };
 		C0B85A762403531C0082E43E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B85A742403531C0082E43E /* MainMenu.xib */; };
 		C0B85A822403531C0082E43E /* ElectroSpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A812403531C0082E43E /* ElectroSpinnerTests.swift */; };
+		C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8C240382C20082E43E /* PrintButton.swift */; };
+		C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */; };
+		C0B85A96240391BE0082E43E /* SwiftVISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0B85A95240391BE0082E43E /* SwiftVISA.framework */; };
+		C0B85A97240392660082E43E /* SwiftVISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0B85A95240391BE0082E43E /* SwiftVISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0B85A99240393220082E43E /* WaveFormGeneratorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A98240393220082E43E /* WaveFormGeneratorController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,6 +28,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C0B85A94240390C70082E43E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				C0B85A97240392660082E43E /* SwiftVISA.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C0B85A6D2403531A0082E43E /* ElectroSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectroSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B85A702403531A0082E43E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +52,10 @@
 		C0B85A7D2403531C0082E43E /* ElectroSpinnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElectroSpinnerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B85A812403531C0082E43E /* ElectroSpinnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerTests.swift; sourceTree = "<group>"; };
 		C0B85A832403531C0082E43E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0B85A8C240382C20082E43E /* PrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButton.swift; sourceTree = "<group>"; };
+		C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerController.swift; sourceTree = "<group>"; };
+		C0B85A95240391BE0082E43E /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftVISA.framework; sourceTree = "<group>"; };
+		C0B85A98240393220082E43E /* WaveFormGeneratorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveFormGeneratorController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B85A96240391BE0082E43E /* SwiftVISA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +83,7 @@
 				C0B85A6F2403531A0082E43E /* ElectroSpinner */,
 				C0B85A802403531C0082E43E /* ElectroSpinnerTests */,
 				C0B85A6E2403531A0082E43E /* Products */,
+				C0B85A90240390C70082E43E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -75,8 +100,11 @@
 			isa = PBXGroup;
 			children = (
 				C0B85A702403531A0082E43E /* AppDelegate.swift */,
-				C0B85A722403531C0082E43E /* Assets.xcassets */,
+				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
+				C0B85A98240393220082E43E /* WaveFormGeneratorController.swift */,
+				C0B85A8C240382C20082E43E /* PrintButton.swift */,
 				C0B85A742403531C0082E43E /* MainMenu.xib */,
+				C0B85A722403531C0082E43E /* Assets.xcassets */,
 				C0B85A772403531C0082E43E /* Info.plist */,
 				C0B85A782403531C0082E43E /* ElectroSpinner.entitlements */,
 			);
@@ -92,6 +120,14 @@
 			path = ElectroSpinnerTests;
 			sourceTree = "<group>";
 		};
+		C0B85A90240390C70082E43E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C0B85A95240391BE0082E43E /* SwiftVISA.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +138,7 @@
 				C0B85A692403531A0082E43E /* Sources */,
 				C0B85A6A2403531A0082E43E /* Frameworks */,
 				C0B85A6B2403531A0082E43E /* Resources */,
+				C0B85A94240390C70082E43E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,7 +229,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
+				C0B85A99240393220082E43E /* WaveFormGeneratorController.swift in Sources */,
+				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +388,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z553N3QGMH;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ElectroSpinner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -368,6 +412,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Z553N3QGMH;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = ElectroSpinner/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
