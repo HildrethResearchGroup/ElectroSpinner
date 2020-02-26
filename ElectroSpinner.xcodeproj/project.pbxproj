@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C05CC4B82407086A00C8C1BA /* PrintStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4B72407086A00C8C1BA /* PrintStatus.swift */; };
 		C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */; };
 		C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A702403531A0082E43E /* AppDelegate.swift */; };
 		C0B85A732403531C0082E43E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B85A722403531C0082E43E /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C05CC4B72407086A00C8C1BA /* PrintStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintStatus.swift; sourceTree = "<group>"; };
 		C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerViewController.swift; sourceTree = "<group>"; };
 		C0B85A6D2403531A0082E43E /* ElectroSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectroSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B85A702403531A0082E43E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				C0B85A702403531A0082E43E /* AppDelegate.swift */,
 				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
+				C05CC4B72407086A00C8C1BA /* PrintStatus.swift */,
 				C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */,
 				C0B85A8C240382C20082E43E /* PrintButton.swift */,
 				C0B85A742403531C0082E43E /* MainMenu.xib */,
@@ -225,6 +228,7 @@
 			files = (
 				C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */,
 				C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */,
+				C05CC4B82407086A00C8C1BA /* PrintStatus.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
 				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
 			);

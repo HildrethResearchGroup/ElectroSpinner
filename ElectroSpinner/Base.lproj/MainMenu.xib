@@ -824,6 +824,12 @@
         </window>
         <viewController id="LvG-cG-Pw7" customClass="ElectroSpinnerViewController" customModule="ElectroSpinner" customModuleProvider="target">
             <connections>
+                <outlet property="button_connectToWaveFormGenerator" destination="R13-TD-B9n" id="Bjy-AC-sGN"/>
+                <outlet property="button_printButton" destination="yJK-2a-1Xa" id="7Zl-wD-FLl"/>
+                <outlet property="label_elapsedTime" destination="F6u-XT-BQ0" id="yL2-8Q-sJP"/>
+                <outlet property="label_waveformVoltage" destination="Hoo-zL-8vz" id="eEN-1H-u5p"/>
+                <outlet property="textField_setElectroSpinnerVoltage" destination="hnc-5P-KMS" id="sUW-Ug-unC"/>
+                <outlet property="textField_setRunTime" destination="gaJ-7A-7by" id="0md-3u-mwz"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="UdG-0r-DRg"/>
             </connections>
         </viewController>

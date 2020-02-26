@@ -27,8 +27,8 @@ import Cocoa
     
     private func getFillColor() -> NSColor {
         switch self.status {
-        case .disabled: return color_disabled
-        case .enabled: return color_enabled
+        case .disabled, .notConnected: return color_disabled
+        case .enabled, .readyForPrinting: return color_enabled
         case .printing: return color_printing
         case .finishedPrinting: return color_finishedPrinting
         case .error: return color_error
