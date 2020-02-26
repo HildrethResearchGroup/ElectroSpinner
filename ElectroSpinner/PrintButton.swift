@@ -8,6 +8,7 @@
 
 import Cocoa
 
+
 @IBDesignable class printButton: NSView {
     let color_disabled = NSColor.lightGray
     let color_enabled = NSColor.green
@@ -15,7 +16,11 @@ import Cocoa
     let color_finishedPrinting = NSColor.orange
     let color_error = NSColor.red
     
-    var status = printStatus.enabled
+    var status = PrintStatus.enabled {
+        didSet {
+            self.needsDisplay = true
+        }
+    }
 
     
     let ovalRect = NSMakeRect(2, 2, 75, 75)
