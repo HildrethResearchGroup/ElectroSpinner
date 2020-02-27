@@ -15,13 +15,17 @@ protocol WaveformController: class {
     
     var dispatchQueue: DispatchQueue { get }
     
-    init?(identifier: String, outputChannel: UInt)
+    init?(identifier: String, outputChannel: UInt) throws
     
     func getIdentifier() throws -> String
     
-    func setImpedence(_ impedenceSetting: ImpedenceSetting)
+    func setImpedence(_ impedenceSetting: ImpedenceSetting) throws
     
     func setVoltage(_ voltage: Double) throws
+    
+    func turnOne() throws
+    
+    func turnOff() throws
 }
 
 

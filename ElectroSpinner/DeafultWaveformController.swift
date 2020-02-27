@@ -10,13 +10,13 @@ import Foundation
 import SwiftVISA
 
 class DefaultWaveformController: WaveformController {
-
-    
-
+   
     static var minimumDelay: UInt32 = 2_000_000
+    private let startupVoltage = 0.0
     private var instrument: MessageBasedInstrument
     var outputChannel: UInt
     var waveformType: WaveformType = .DC
+    var impedence: ImpedenceSetting = .infinite
     
     
     // MARK: - Dispatch queue
@@ -27,7 +27,7 @@ class DefaultWaveformController: WaveformController {
     
     
     // MARK: - Initializers
-    required init?(identifier: String, outputChannel: UInt = 1) {
+    required init?(identifier: String, outputChannel: UInt = 1) throws {
         guard let instrumentManager = InstrumentManager.default else { return nil }
         guard let instrument = try? instrumentManager.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
             return nil
@@ -35,8 +35,8 @@ class DefaultWaveformController: WaveformController {
         
         self.instrument = instrument
         self.outputChannel = outputChannel
-        turnOn()
-        setImpedence(.infinite)
+        try turnOn()
+        try setImpedence(self.impedence)
     }
     
     
@@ -52,14 +52,10 @@ class DefaultWaveformController: WaveformController {
     
     - Parameter impedenceSetting: enum of the target impedence
     */
-    func setImpedence(_ impedenceSetting: ImpedenceSetting) {
+    func setImpedence(_ impedenceSetting: ImpedenceSetting) throws {
         let outputString = "OUTPUT\(outputChannel)"
         let impedenceString = impedenceSetting.command()
-        do {
-            try instrument.write(outputString + ":" + impedenceString)  // Example: OUTPUT1:LOAD INF""
-        } catch {
-            print(error)
-        }
+        try instrument.write(outputString + ":" + impedenceString)  // Example: OUTPUT1:LOAD INF""
     }
     
     
@@ -69,18 +65,32 @@ class DefaultWaveformController: WaveformController {
     - Parameter voltage: The target output voltage
     */
     func setVoltage(_ voltage: Double) throws {
-        do {
-            try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(voltage)")
-        } catch { print(error)}
+        try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(voltage)")
     }
     
     
-    func turnOn() {
+    func turnOn() throws {
+        let waveformCommand = self.waveformType.command()
+        
+        try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(startupVoltage)")
+        try instrument.write("OUTPUT\(outputChannel) ON")
+        try instrument.write("Source\(outputChannel):\(waveformCommand)")
+        /*
         do {
             let waveformCommand = self.waveformType.command()
             try instrument.write("OUTPUT\(outputChannel) ON")
             try instrument.write("Source\(outputChannel):\(waveformCommand)")
         } catch {print(error)}
+         */
+    }
+    
+    func turnOff() throws {
+        try instrument.write("OUTPUT\(outputChannel) OFF")
+        /*
+        do {
+            try instrument.write("OUTPUT\(outputChannel) OFF")
+        } catch {print(error)}
+        */
     }
     
     
