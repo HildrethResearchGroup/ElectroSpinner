@@ -15,14 +15,6 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ElectroSpinner" customModuleProvider="target">
             <connections>
-                <outlet property="ElectroSpinnerViewController" destination="LvG-cG-Pw7" id="nna-bu-YVB"/>
-                <outlet property="button_connectToWaveFormGenerator" destination="R13-TD-B9n" id="Ra6-Qu-Umn"/>
-                <outlet property="button_printButton" destination="yJK-2a-1Xa" id="zDi-Pq-Xk9"/>
-                <outlet property="connectToWaveFormGenerator" destination="R13-TD-B9n" id="vtw-26-PoB"/>
-                <outlet property="label_elapsedTime" destination="F6u-XT-BQ0" id="WkU-rW-4In"/>
-                <outlet property="label_waveformVoltage" destination="Hoo-zL-8vz" id="INm-vu-BrY"/>
-                <outlet property="textField_setElectroSpinnerVoltage" destination="hnc-5P-KMS" id="y5x-7E-Ddh"/>
-                <outlet property="textField_setRunTime" destination="gaJ-7A-7by" id="hza-kQ-CXq"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
@@ -694,7 +686,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="480" height="187"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="480" height="187"/>
             <value key="maxSize" type="size" width="480" height="187"/>
             <view key="contentView" id="EiT-Mj-1SZ">
@@ -715,9 +707,6 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
-                        <connections>
-                            <action selector="testAction:" target="Voe-Tx-rLC" id="gDo-fF-BCk"/>
-                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoB-Fy-flh">
                         <rect key="frame" x="18" y="85" width="161" height="16"/>
@@ -781,21 +770,13 @@
                         </constraints>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="EAZ-7j-Duv">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Njd-n2-t09">
-                                <real key="minimum" value="-10000"/>
-                                <real key="maximum" value="10000"/>
+                                <real key="minimum" value="0.0"/>
                             </numberFormatter>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="yJK-2a-1Xa" customClass="printButton" customModule="ElectroSpinner" customModuleProvider="target">
-                        <rect key="frame" x="378" y="85" width="82" height="82"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="82" id="71v-oe-eDw"/>
-                            <constraint firstAttribute="width" secondItem="yJK-2a-1Xa" secondAttribute="height" multiplier="1:1" id="C9I-GK-DKf"/>
-                        </constraints>
-                    </customView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="leading" secondItem="DRi-1N-Ku2" secondAttribute="trailing" constant="13" id="3TJ-ZS-HcQ"/>
@@ -803,7 +784,6 @@
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="firstBaseline" secondItem="R13-TD-B9n" secondAttribute="baseline" constant="39" id="MWh-Qm-Wd4"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="baseline" constant="25" id="NF7-96-JzD"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="OF7-FC-mBb"/>
-                    <constraint firstItem="yJK-2a-1Xa" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="QA2-Ki-kFE"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="XN1-8D-JnK"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="firstBaseline" id="eBK-wP-cnM"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="centerY" secondItem="oLN-yx-WdP" secondAttribute="centerY" id="eU3-7h-Amf"/>
@@ -815,23 +795,11 @@
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="o36-a3-vDe"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="oiu-Nv-78j"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="firstBaseline" id="pVi-Jc-hie"/>
-                    <constraint firstAttribute="trailing" secondItem="yJK-2a-1Xa" secondAttribute="trailing" constant="20" id="px7-sl-ilQ"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="tSZ-LJ-rlX"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="top" secondItem="IoB-Fy-flh" secondAttribute="bottom" constant="24" id="xFA-w0-eBY"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="139" y="-207.5"/>
         </window>
-        <viewController id="LvG-cG-Pw7" customClass="ElectroSpinnerViewController" customModule="ElectroSpinner" customModuleProvider="target">
-            <connections>
-                <outlet property="button_connectToWaveFormGenerator" destination="R13-TD-B9n" id="Bjy-AC-sGN"/>
-                <outlet property="button_printButton" destination="yJK-2a-1Xa" id="7Zl-wD-FLl"/>
-                <outlet property="label_elapsedTime" destination="F6u-XT-BQ0" id="yL2-8Q-sJP"/>
-                <outlet property="label_waveformVoltage" destination="Hoo-zL-8vz" id="eEN-1H-u5p"/>
-                <outlet property="textField_setElectroSpinnerVoltage" destination="hnc-5P-KMS" id="sUW-Ug-unC"/>
-                <outlet property="textField_setRunTime" destination="gaJ-7A-7by" id="0md-3u-mwz"/>
-                <outlet property="view" destination="EiT-Mj-1SZ" id="UdG-0r-DRg"/>
-            </connections>
-        </viewController>
     </objects>
 </document>

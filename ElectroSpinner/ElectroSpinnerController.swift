@@ -86,18 +86,16 @@ extension ElectroSpinnerController {
         try waveformController?.runWaveform(for: printTime)
         
         self.printing = true
-        // Stop the waveform
-        let delayTime = DispatchTime.now() + printTime
-        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-            self.stopPrinting()
-        })
-            
     }
         
         
 
     func stopPrinting() {
         print("Test")
+        do {
+            try waveformController?.stopWaveform()
+        } catch {print(error)}
+        
         self.startPrintTime = nil
         self.printing = false
     }

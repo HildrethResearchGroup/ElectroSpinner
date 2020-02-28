@@ -13,13 +13,14 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var ElectroSpinnerViewController: ElectroSpinnerViewController!
+    //@IBOutlet weak var ElectroSpinnerViewController: ElectroSpinnerViewController!
     
     
     
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        print("Finished launching")
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

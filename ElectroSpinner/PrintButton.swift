@@ -8,8 +8,8 @@
 
 import Cocoa
 
-
-@IBDesignable class printButton: NSView {
+//@IBDesignable
+class printButton: NSView {
     let color_disabled = NSColor.lightGray
     let color_enabled = NSColor.green
     let color_printing = NSColor.yellow
