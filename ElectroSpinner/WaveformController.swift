@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WaveformController: class {
-    var outputChannel: UInt {set get}
+    var outputChannel: UInt { get set }
     static var minimumDelay: UInt32 { get }
     var waveformType: WaveformType {get set}
     
@@ -23,7 +23,9 @@ protocol WaveformController: class {
     
     func setVoltage(_ voltage: Double) throws
     
-    func turnOne() throws
+    func setWaveform() throws
+    
+    func turnOn() throws
     
     func turnOff() throws
 }

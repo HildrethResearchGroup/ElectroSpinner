@@ -9,14 +9,30 @@
 import Foundation
 import SwiftVISA
 
-class DefaultWaveformController: WaveformController {
-   
+class DCWaveformController: WaveformController {
+    // MARK: - Properties
     static var minimumDelay: UInt32 = 2_000_000
+    var voltage = 0.0 {
+        didSet {
+            do {
+                try setVoltage(voltage)
+            } catch {
+                print("Error when trying to set voltage")
+                print(error) } }
+    }
     private let startupVoltage = 0.0
+    private let turnedOffVoltage = 0.0
     private var instrument: MessageBasedInstrument
     var outputChannel: UInt
     var waveformType: WaveformType = .DC
-    var impedence: ImpedenceSetting = .infinite
+    var impedence: ImpedenceSetting = .standard {
+        didSet {
+            do {
+                try setImpedence(impedence)
+            } catch {
+                print("Error when trying to set Impedence")
+                print(error) } }
+    }
     
     
     // MARK: - Dispatch queue
@@ -38,10 +54,11 @@ class DefaultWaveformController: WaveformController {
         try turnOn()
         try setImpedence(self.impedence)
     }
-    
-    
-    
-    // MARK: - WaveformController Protocol
+}
+
+
+// MARK: - WaveformController Protocol
+extension DCWaveformController {
     func getIdentifier() throws -> String {
         return try instrument.query("*IDN?\n", as: String.self, decoder: StringDecoder())
     }
@@ -55,7 +72,8 @@ class DefaultWaveformController: WaveformController {
     func setImpedence(_ impedenceSetting: ImpedenceSetting) throws {
         let outputString = "OUTPUT\(outputChannel)"
         let impedenceString = impedenceSetting.command()
-        try instrument.write(outputString + ":" + impedenceString)  // Example: OUTPUT1:LOAD INF""
+        let commandString = outputString + ":" + impedenceString
+        try instrument.write(commandString)  // Example: OUTPUT1:LOAD INF""
     }
     
     
@@ -68,13 +86,20 @@ class DefaultWaveformController: WaveformController {
         try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(voltage)")
     }
     
+    func setWaveform() throws {
+        let waveformCommand = self.waveformType.command()
+        try instrument.write("Source\(outputChannel):\(waveformCommand)")
+    }
+    
     
     func turnOn() throws {
-        let waveformCommand = self.waveformType.command()
-        
-        try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(startupVoltage)")
+        // Set the waveform (DC in this case)
+        try setWaveform()
+        // Turn on with 0.0 volts for safety
+        try setVoltage(startupVoltage)
+
         try instrument.write("OUTPUT\(outputChannel) ON")
-        try instrument.write("Source\(outputChannel):\(waveformCommand)")
+
         /*
         do {
             let waveformCommand = self.waveformType.command()
@@ -84,7 +109,9 @@ class DefaultWaveformController: WaveformController {
          */
     }
     
+
     func turnOff() throws {
+        try setVoltage(turnedOffVoltage)
         try instrument.write("OUTPUT\(outputChannel) OFF")
         /*
         do {
@@ -92,12 +119,35 @@ class DefaultWaveformController: WaveformController {
         } catch {print(error)}
         */
     }
+}
+
+// MARK: - Running the Waveform
+extension DCWaveformController  {
+    func runWaveform(for runTime: Double) throws {
+        // Rerun turnOn and setVoltage to make sure the system is definitely on an ready to run the waveform
+        try turnOn()
+        try setVoltage(voltage)
+        
+        // Make sure that the input runTime isn't negative
+        if runTime < 0 {return}
+        
+        // Calculate the run time
+        let runLength = DispatchTime.now() + Double(runTime)
+        
+        // Have stopWaveform run after runLength
+        DispatchQueue.main.asyncAfter(deadline: runLength, execute: {
+            try self.stopWaveform()
+            } as! @convention(block) () -> Void)
+    }
     
-    
+    func stopWaveform() throws {
+        try instrument.write("OUTPUT\(outputChannel) OFF")
+    }
 }
 
 
-extension DefaultWaveformController {
+// MARK: - Decoders
+extension DCWaveformController {
     private struct StringDecoder: VISADecoder {
         func decode(_ string: String) throws -> String {
             var fixedString = string

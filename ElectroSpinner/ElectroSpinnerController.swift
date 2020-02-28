@@ -11,11 +11,18 @@ import SwiftVISA
 
 class ElectroSpinnerController {
     // MARK: Input Variables
-    var electrospinnerVoltage = 0.0
+    var electrospinnerVoltage = 0.0 {
+        didSet {
+            let waveformVoltage = electrospinnerVoltage/amplifierGain
+            waveformController?.voltage = waveformVoltage
+        }
+    }
     let amplifierGain = 1000.0
     var printTime = 0.0
    
-
+    
+    // MARK: Wavefunction Controller
+    var waveformController: DCWaveformController?
     
     // MARK: Print Status Variables
     var startPrintTime: DispatchTime? = nil
@@ -23,37 +30,22 @@ class ElectroSpinnerController {
     var connected = false
     var printing = false
     var error = false
-    
-    
-    
-    
-    func printStatus() -> PrintStatus {
-        if safetyTriggerEnabled == false {return .disabled}
-        if error == true {return .error}
-        if printing == true {return .printing}
-        
-        
-        
-        return .disabled
-    }
-    
-    
-    func elapsedTime() -> Double {
-        if startPrintTime == nil {
-            return 0.0
-        }
-        
-        return 0.0
-    }
-    
+     
 }
 
 
 
-// MARK: - Waveform Functions
-
+// MARK: - Waveform Controller
 extension ElectroSpinnerController {
-    
+    func makeWaveFormController() throws -> DCWaveformController? {
+        let identifier = "USB0::0x0957::0x2607::MY52200879::INSTR"
+        let outputChannel: UInt = 1
+        return try DCWaveformController(identifier: identifier, outputChannel: outputChannel)
+    }
+
+    func connectToWaveformGenerator() throws {
+        try self.waveformController = self.makeWaveFormController()
+    }
 }
 
 
@@ -73,6 +65,7 @@ extension ElectroSpinnerController {
     
     
     func startPrinting() throws {
+        // Check to see if printing is allowed.  Return error if printing can't be done.
         let canStartWaveform = self.canStartPrinting()
         if canStartWaveform == false {
             let printStatus = self.printStatus()
@@ -89,6 +82,8 @@ extension ElectroSpinnerController {
         }
         
         
+        try waveformController?.turnOn()
+        try waveformController?.runWaveform(for: printTime)
         
         self.printing = true
         // Stop the waveform
@@ -105,6 +100,26 @@ extension ElectroSpinnerController {
         print("Test")
         self.startPrintTime = nil
         self.printing = false
+    }
+    
+    
+    func printStatus() -> PrintStatus {
+        if safetyTriggerEnabled == false {return .disabled}
+        if error == true {return .error}
+        if printing == true {return .printing}
+        
+        
+        // TODO: Fix printStatus
+        return .enabled
+    }
+    
+    
+    func elapsedTime() -> Double {
+        if startPrintTime == nil {
+            return 0.0
+        }
+        
+        return 0.0
     }
     
 }
