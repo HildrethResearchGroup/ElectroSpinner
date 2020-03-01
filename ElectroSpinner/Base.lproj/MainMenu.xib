@@ -712,6 +712,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
+                            <action selector="test" target="YfV-cA-h8u" id="Np3-fb-7VM"/>
                             <outlet property="nextKeyView" destination="hnc-5P-KMS" id="mTk-6D-Hhm"/>
                         </connections>
                     </button>

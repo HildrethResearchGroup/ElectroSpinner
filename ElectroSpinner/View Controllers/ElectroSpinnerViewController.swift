@@ -44,6 +44,11 @@ class ElectroSpinnerViewController: NSViewController {
         textField_setRunTime.delegate = self as NSTextFieldDelegate
     }
     
+    
+    // MARK: - Responding to User Inputs
+
+    
+    
     func setElectroSpinnerVoltage(_ voltage: Double) {
         if voltage != electrospinnerController.electrospinnerVoltage {
             self.electrospinnerController.electrospinnerVoltage = voltage
