@@ -13,11 +13,11 @@ protocol WaveformController: class {
     static var minimumDelay: UInt32 { get }
     var waveformType: WaveformType {get set}
     
-    var dispatchQueue: DispatchQueue { get }
+    var dispatchQueue: DispatchQueue? { get }
     
     init?(identifier: String, outputChannel: UInt) throws
     
-    func getIdentifier() throws -> String
+    func getIdentifier() throws -> String?
     
     func setImpedence(_ impedenceSetting: ImpedenceSetting) throws
     
@@ -79,7 +79,7 @@ enum WaveformType {
     func command() -> String {
         switch self {
         case .DC:
-            return "WAVEFORM DC"
+            return "FUNCtion DC"
         }
     }
 }

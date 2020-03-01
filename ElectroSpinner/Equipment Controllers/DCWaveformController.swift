@@ -10,6 +10,7 @@ import Foundation
 import SwiftVISA
 
 class DCWaveformController: WaveformController {
+    
     // MARK: - Properties
     static var minimumDelay: UInt32 = 2_000_000
     var voltage = 0.0 {
@@ -22,7 +23,7 @@ class DCWaveformController: WaveformController {
     }
     private let startupVoltage = 0.0
     private let turnedOffVoltage = 0.0
-    private var instrument: MessageBasedInstrument
+    private var instrument: MessageBasedInstrument?
     var outputChannel: UInt
     var waveformType: WaveformType = .DC
     var impedence: ImpedenceSetting = .standard {
@@ -37,20 +38,35 @@ class DCWaveformController: WaveformController {
     
     // MARK: - Dispatch queue
     
-    var dispatchQueue: DispatchQueue {
-        return instrument.dispatchQueue
+    var dispatchQueue: DispatchQueue? {
+        return instrument?.dispatchQueue
     }
     
     
     // MARK: - Initializers
     required init?(identifier: String, outputChannel: UInt = 1) throws {
-        guard let instrumentManager = InstrumentManager.default else { return nil }
+        
+        print("Initilize instrument")
+        /*
+        guard let instrumentManager = try? InstrumentManager.default else {
+            print("Error when init instrumentManager")
+            return nil }
         guard let instrument = try? instrumentManager.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
+            print("ERROR - DCWaveformController not initilized")
             return nil
         }
+         */
         
-        self.instrument = instrument
+        guard var newInstrument = try? InstrumentManager.default?.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
+            print("Could not make waveform generator")
+                return nil
+        }
+
+        
+        self.instrument = newInstrument
         self.outputChannel = outputChannel
+        
+        // TODO: remove turnON once connections are working
         try turnOn()
         try setImpedence(self.impedence)
     }
@@ -59,8 +75,8 @@ class DCWaveformController: WaveformController {
 
 // MARK: - WaveformController Protocol
 extension DCWaveformController {
-    func getIdentifier() throws -> String {
-        return try instrument.query("*IDN?\n", as: String.self, decoder: StringDecoder())
+    func getIdentifier() throws -> String? {
+        return try (instrument?.query("*IDN?\n", as: String.self, decoder: StringDecoder()))
     }
     
     
@@ -73,7 +89,7 @@ extension DCWaveformController {
         let outputString = "OUTPUT\(outputChannel)"
         let impedenceString = impedenceSetting.command()
         let commandString = outputString + ":" + impedenceString
-        try instrument.write(commandString)  // Example: OUTPUT1:LOAD INF""
+        try instrument?.write(commandString)  // Example: OUTPUT1:LOAD INF""
     }
     
     
@@ -83,12 +99,12 @@ extension DCWaveformController {
     - Parameter voltage: The target output voltage
     */
     func setVoltage(_ voltage: Double) throws {
-        try instrument.write("Source\(outputChannel):VOLTAGE:OFFSET \(voltage)")
+        try instrument?.write("SOURce\(outputChannel):VOLTage:OFFSet \(voltage)")
     }
     
     func setWaveform() throws {
         let waveformCommand = self.waveformType.command()
-        try instrument.write("Source\(outputChannel):\(waveformCommand)")
+        try instrument?.write("SOURce\(outputChannel):\(waveformCommand)")
     }
     
     
@@ -98,21 +114,14 @@ extension DCWaveformController {
         // Turn on with 0.0 volts for safety
         try setVoltage(startupVoltage)
 
-        try instrument.write("OUTPUT\(outputChannel) ON")
+        try instrument?.write("OUTPUT\(outputChannel) ON")
 
-        /*
-        do {
-            let waveformCommand = self.waveformType.command()
-            try instrument.write("OUTPUT\(outputChannel) ON")
-            try instrument.write("Source\(outputChannel):\(waveformCommand)")
-        } catch {print(error)}
-         */
     }
     
 
     func turnOff() throws {
         try setVoltage(turnedOffVoltage)
-        try instrument.write("OUTPUT\(outputChannel) OFF")
+        try instrument?.write("OUTPUT\(outputChannel) OFF")
         /*
         do {
             try instrument.write("OUTPUT\(outputChannel) OFF")
@@ -141,7 +150,7 @@ extension DCWaveformController  {
     }
     
     func stopWaveform() throws {
-        try instrument.write("OUTPUT\(outputChannel) OFF")
+        try instrument?.write("OUTPUT\(outputChannel) OFF")
     }
 }
 

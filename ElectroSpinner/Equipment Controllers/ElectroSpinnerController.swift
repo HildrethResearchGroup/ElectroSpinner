@@ -68,13 +68,18 @@ class ElectroSpinnerController {
 // MARK: - Waveform Controller
 extension ElectroSpinnerController {
     private func makeWaveFormController() throws -> DCWaveformController? {
+        print("makeWaveFormController")
         let identifier = "USB0::0x0957::0x2607::MY52200879::INSTR"
         let outputChannel: UInt = 1
         
-        return try DCWaveformController(identifier: identifier, outputChannel: outputChannel)
+        // DCWaveformController(identifier: identifier, outputChannel: outputChannel)
+        let controller = try DCWaveformController(identifier: identifier, outputChannel: outputChannel)
+        
+        return controller
     }
 
     func connectToWaveformGenerator() throws {
+        print("connectToWaveformGenerator")
         try self.waveformController = self.makeWaveFormController()
         
         // Update state if waveform controller connected

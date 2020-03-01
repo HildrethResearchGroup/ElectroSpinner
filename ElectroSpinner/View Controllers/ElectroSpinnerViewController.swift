@@ -47,6 +47,29 @@ class ElectroSpinnerViewController: NSViewController {
     
     // MARK: - Responding to User Inputs
 
+    /*
+    @IBAction func connectToWaveformGenerator(_ sender: Any) {
+        print("connectToWaveformGenerator - start")
+        do {
+            try electrospinnerController.connectToWaveformGenerator()
+        } catch  {
+            print("Failed to Connect to Waveform Generator")
+            print(error)
+        }
+        print("connectToWaveformGenerator - end")
+    }
+ */
+    
+    @IBAction func connectToWaveformGenerator(_ sender: Any) {
+        print("connectToWaveformGenerator - start")
+        do {
+            try electrospinnerController.connectToWaveformGenerator()
+        } catch  {
+            print("Failed to Connect to Waveform Generator")
+            print(error)
+        }
+        print("connectToWaveformGenerator - end")
+    }
     
     
     func setElectroSpinnerVoltage(_ voltage: Double) {

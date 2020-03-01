@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C025455D240C3A71004AC370 /* SwiftVISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C04CC5A7240B8C8B00016D3C /* SwiftVISA.framework */; };
+		C025455E240C3A71004AC370 /* SwiftVISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C04CC5A7240B8C8B00016D3C /* SwiftVISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0254560240C3A7F004AC370 /* VISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6AC2409AD3C008490BD /* VISA.framework */; };
+		C0254561240C3A7F004AC370 /* VISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6AC2409AD3C008490BD /* VISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */; };
 		C05CC4BF2407298900C8C1BA /* WaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BE2407298900C8C1BA /* WaveformController.swift */; };
 		C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */; };
@@ -16,10 +20,6 @@
 		C0B85A822403531C0082E43E /* ElectroSpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A812403531C0082E43E /* ElectroSpinnerTests.swift */; };
 		C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8C240382C20082E43E /* PrintButton.swift */; };
 		C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */; };
-		C0F7A6AD2409AD3C008490BD /* VISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6AC2409AD3C008490BD /* VISA.framework */; };
-		C0F7A6AE2409AD3C008490BD /* VISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6AC2409AD3C008490BD /* VISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		C0F7A6B12409AD5C008490BD /* SwiftVISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */; };
-		C0F7A6B22409AD5C008490BD /* SwiftVISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0F7A6B7240B6F2B008490BD /* ElectroSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -34,14 +34,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		C0F7A6AF2409AD3C008490BD /* Embed Frameworks */ = {
+		C025455F240C3A71004AC370 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				C0F7A6AE2409AD3C008490BD /* VISA.framework in Embed Frameworks */,
-				C0F7A6B22409AD5C008490BD /* SwiftVISA.framework in Embed Frameworks */,
+				C025455E240C3A71004AC370 /* SwiftVISA.framework in Embed Frameworks */,
+				C0254561240C3A7F004AC370 /* VISA.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -49,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C04CC5A7240B8C8B00016D3C /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftVISA.framework; path = ../../../../../Library/Frameworks/SwiftVISA.framework; sourceTree = "<group>"; };
 		C05CC4B9240726E100C8C1BA /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftVISA.framework; sourceTree = "<group>"; };
 		C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCWaveformController.swift; sourceTree = "<group>"; };
 		C05CC4BE2407298900C8C1BA /* WaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformController.swift; sourceTree = "<group>"; };
@@ -65,7 +66,6 @@
 		C0B85A8C240382C20082E43E /* PrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButton.swift; sourceTree = "<group>"; };
 		C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerController.swift; sourceTree = "<group>"; };
 		C0F7A6AC2409AD3C008490BD /* VISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VISA.framework; path = ../../../../../../../Library/Frameworks/VISA.framework; sourceTree = "<group>"; };
-		C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftVISA.framework; path = ../../../../../Library/Frameworks/SwiftVISA.framework; sourceTree = "<group>"; };
 		C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,8 +74,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C0F7A6AD2409AD3C008490BD /* VISA.framework in Frameworks */,
-				C0F7A6B12409AD5C008490BD /* SwiftVISA.framework in Frameworks */,
+				C025455D240C3A71004AC370 /* SwiftVISA.framework in Frameworks */,
+				C0254560240C3A7F004AC370 /* VISA.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 		C0B85A90240390C70082E43E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */,
+				C04CC5A7240B8C8B00016D3C /* SwiftVISA.framework */,
 				C0F7A6AC2409AD3C008490BD /* VISA.framework */,
 				C05CC4B9240726E100C8C1BA /* SwiftVISA.framework */,
 			);
@@ -179,7 +179,7 @@
 				C0B85A692403531A0082E43E /* Sources */,
 				C0B85A6A2403531A0082E43E /* Frameworks */,
 				C0B85A6B2403531A0082E43E /* Resources */,
-				C0F7A6AF2409AD3C008490BD /* Embed Frameworks */,
+				C025455F240C3A71004AC370 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -428,10 +428,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ElectroSpinner/ElectroSpinner.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z553N3QGMH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -456,10 +456,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ElectroSpinner/ElectroSpinner.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = Z553N3QGMH;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
