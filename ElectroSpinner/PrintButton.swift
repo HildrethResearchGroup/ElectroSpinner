@@ -9,28 +9,47 @@
 import Cocoa
 
 //@IBDesignable
-class printButton: NSView {
+@IBDesignable class PrintButton: NSButton {
+    var delegate: PrintButtonDelegate? = nil
+    
     let color_disabled = NSColor.lightGray
-    let color_enabled = NSColor.green
+    let color_readyForPrinting = NSColor.green
     let color_printing = NSColor.yellow
-    let color_finishedPrinting = NSColor.orange
+    //let color_finishedPrinting = NSColor.orange
     let color_error = NSColor.red
     
-    var status = PrintStatus.enabled {
+    var status = PrintStatus.readyForPrinting {
         didSet {
             self.needsDisplay = true
         }
     }
-
     
-    let ovalRect = NSMakeRect(2, 2, 75, 75)
+    override func mouseDown(with event: NSEvent) {
+        self.delegate?.printButtonDown(sender: self)
+        if let delegateStatus = self.delegate?.printButtonStatus(sender: self) {
+            self.status = delegateStatus
+        } else {self.status = .disabled }
+        
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        self.delegate?.printButtonUp(sender: self)
+        if let delegateStatus = self.delegate?.printButtonStatus(sender: self) {
+            self.status = delegateStatus
+        } else {self.status = .readyForPrinting }
+    }
+
+}
+
+
+// MARK: - Drawing
+extension PrintButton {
     
     private func getFillColor() -> NSColor {
         switch self.status {
         case .disabled, .notConnected: return color_disabled
-        case .enabled, .readyForPrinting: return color_enabled
+        case .readyForPrinting: return color_readyForPrinting
         case .printing: return color_printing
-        case .finishedPrinting: return color_finishedPrinting
         case .error: return color_error
         }
     }
@@ -59,6 +78,9 @@ class printButton: NSView {
         //NSColor.white.setFill()
         //dirtyRect.fill()
         
+        let sframe = self.bounds
+        
+        let ovalRect = NSMakeRect(sframe.minX + 2, sframe.minY + 2, sframe.width - 4, sframe.height - 4)
         
         let ovalPath = NSBezierPath(ovalIn: ovalRect)
         let fillColor = self.getFillColor()
@@ -68,28 +90,20 @@ class printButton: NSView {
         strokeColor.setStroke()
         ovalPath.lineWidth = 1.5
         ovalPath.stroke()
-        
-        /**
-        let ovalTextContent = NSString(string: "S")
-        let ovalStyle = NSMutableParagraphStyle()
-        ovalStyle.alignment = .center
-
-        let ovalFontAttributes = [NSAttributedString.Key.font: NSFont(name: "HelveticaNeue", size: 23)!, NSAttributedString.Key.foregroundColor: NSColor.black, NSAttributedString.Key.paragraphStyle: ovalStyle]
-
-        let ovalTextHeight: CGFloat = ovalTextContent.boundingRect(with: NSMakeSize(ovalRect.width, CGFloat.infinity), options: NSString.DrawingOptions.usesLineFragmentOrigin, attributes: ovalFontAttributes).size.height
-        let ovalTextRect: NSRect = NSMakeRect(ovalRect.minX, ovalRect.minY + (ovalRect.height - ovalTextHeight) / 2, ovalRect.width, ovalTextHeight)
-        NSGraphicsContext.saveGraphicsState()
-        ovalTextContent.draw(in: NSOffsetRect(ovalTextRect, 0, 1), withAttributes: ovalFontAttributes)
-        NSGraphicsContext.restoreGraphicsState()
-        */
-        
     }
-    
-    
     
 }
 
 
+// MARK: - Delegate
+
+protocol PrintButtonDelegate: AnyObject {
+    func printButtonDown(sender: PrintButton)
+    func printButtonUp(sender: PrintButton)
+    
+    func printButtonStatus(sender: PrintButton) -> PrintStatus
+    
+}
 
 
 

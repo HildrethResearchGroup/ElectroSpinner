@@ -13,9 +13,10 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBOutlet weak var window: NSWindow!
-    //@IBOutlet weak var ElectroSpinnerViewController: ElectroSpinnerViewController!
     
+    @IBOutlet weak var electrospinnerViewController: ElectroSpinnerViewController!
     
+  
     
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

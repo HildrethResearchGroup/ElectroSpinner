@@ -11,6 +11,8 @@ import SwiftVISA
 
 class ElectroSpinnerController {
     // MARK: Input Variables
+    
+    
     var electrospinnerVoltage = 0.0 {
         didSet {
             let waveformVoltage = electrospinnerVoltage/amplifierGain
@@ -22,14 +24,21 @@ class ElectroSpinnerController {
    
     
     // MARK: Wavefunction Controller
-    var waveformController: DCWaveformController?
+    var waveformController: DCWaveformController? {
+        didSet {
+            if let _ = waveformController {
+                self.connectedState = true
+            } else {self.connectedState = false}
+        }
+    }
     
     // MARK: Print Status Variables
+    var safetyKeyState = false
+    var connectedState = false
+    var printingState = false
+    var errorState = false
+    
     var startPrintTime: DispatchTime? = nil
-    var safetyTriggerEnabled = false
-    var connected = false
-    var printing = false
-    var error = false
      
 }
 
@@ -37,9 +46,10 @@ class ElectroSpinnerController {
 
 // MARK: - Waveform Controller
 extension ElectroSpinnerController {
-    func makeWaveFormController() throws -> DCWaveformController? {
+    private func makeWaveFormController() throws -> DCWaveformController? {
         let identifier = "USB0::0x0957::0x2607::MY52200879::INSTR"
         let outputChannel: UInt = 1
+        
         return try DCWaveformController(identifier: identifier, outputChannel: outputChannel)
     }
 
@@ -75,7 +85,7 @@ extension ElectroSpinnerController {
             case .notConnected:
                 throw startPrintingError.notConnected
             case .printing:
-                throw startPrintingError.alreadyRunning
+                throw startPrintingError.alreadyPrinting
             default:
                 throw startPrintingError.error
             }
@@ -85,7 +95,7 @@ extension ElectroSpinnerController {
         try waveformController?.turnOn()
         try waveformController?.runWaveform(for: printTime)
         
-        self.printing = true
+        self.printingState = true
     }
         
         
@@ -97,18 +107,17 @@ extension ElectroSpinnerController {
         } catch {print(error)}
         
         self.startPrintTime = nil
-        self.printing = false
+        self.printingState = false
     }
     
     
     func printStatus() -> PrintStatus {
-        if safetyTriggerEnabled == false {return .disabled}
-        if error == true {return .error}
-        if printing == true {return .printing}
-        
-        
-        // TODO: Fix printStatus
-        return .enabled
+        if safetyKeyState == false {return .disabled}
+        if connectedState == false {return .notConnected}
+        if errorState == true {return .error}
+        if printingState == true {return .printing}
+              
+        return .readyForPrinting
     }
     
     
@@ -124,23 +133,36 @@ extension ElectroSpinnerController {
 
 
 
-// MARK: Enums
+// MARK: - Enums
 enum startPrintingError: Error {
-    case alreadyRunning
+    case alreadyPrinting
     case disabled
     case notConnected
     case error
 }
 
 
-
 enum PrintStatus:Int {
     case disabled = 1
     case notConnected
-    case enabled
     case readyForPrinting
     case printing
-    case finishedPrinting
     case error
 }
 
+
+// MARK: - PrintButtonDelegate
+extension ElectroSpinnerController: PrintButtonDelegate {
+    func printButtonDown(sender: PrintButton) {
+        print("printButtonDown")
+    }
+    
+    func printButtonUp(sender: PrintButton) {
+        print("printButtonUp")
+    }
+    
+    func printButtonStatus(sender: PrintButton) -> PrintStatus {
+        return .printing
+    }
+    
+}
