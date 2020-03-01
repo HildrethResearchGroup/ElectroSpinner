@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C05CC4BD240728D500C8C1BA /* DeafultWaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BC240728D500C8C1BA /* DeafultWaveformController.swift */; };
+		C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */; };
 		C05CC4BF2407298900C8C1BA /* WaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BE2407298900C8C1BA /* WaveformController.swift */; };
 		C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */; };
 		C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A702403531A0082E43E /* AppDelegate.swift */; };
@@ -49,7 +49,7 @@
 
 /* Begin PBXFileReference section */
 		C05CC4B9240726E100C8C1BA /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SwiftVISA.framework; sourceTree = "<group>"; };
-		C05CC4BC240728D500C8C1BA /* DeafultWaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeafultWaveformController.swift; sourceTree = "<group>"; };
+		C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCWaveformController.swift; sourceTree = "<group>"; };
 		C05CC4BE2407298900C8C1BA /* WaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformController.swift; sourceTree = "<group>"; };
 		C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerViewController.swift; sourceTree = "<group>"; };
 		C0B85A6D2403531A0082E43E /* ElectroSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectroSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +114,7 @@
 				C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */,
 				C0B85A8C240382C20082E43E /* PrintButton.swift */,
 				C05CC4BE2407298900C8C1BA /* WaveformController.swift */,
-				C05CC4BC240728D500C8C1BA /* DeafultWaveformController.swift */,
+				C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */,
 				C0B85A742403531C0082E43E /* MainMenu.xib */,
 				C0B85A722403531C0082E43E /* Assets.xcassets */,
 				C0B85A772403531C0082E43E /* Info.plist */,
@@ -246,7 +246,7 @@
 				C05CC4BF2407298900C8C1BA /* WaveformController.swift in Sources */,
 				C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */,
 				C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */,
-				C05CC4BD240728D500C8C1BA /* DeafultWaveformController.swift in Sources */,
+				C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
 				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
 			);

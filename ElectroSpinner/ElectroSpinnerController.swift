@@ -15,10 +15,13 @@ class ElectroSpinnerController {
     
     var electrospinnerVoltage = 0.0 {
         didSet {
-            let waveformVoltage = electrospinnerVoltage/amplifierGain
             waveformController?.voltage = waveformVoltage
         }
     }
+    var waveformVoltage: Double {
+        get {return electrospinnerVoltage/amplifierGain }
+    }
+    
     let amplifierGain = 1000.0
     var printTime = 0.0
    
@@ -33,10 +36,28 @@ class ElectroSpinnerController {
     }
     
     // MARK: Print Status Variables
-    var safetyKeyState = false
-    var connectedState = false
-    var printingState = false
-    var errorState = false
+    var printStatus = PrintStatus.disabled {
+        didSet {
+            switch printStatus {
+                // Turn off the waveform generator if the printStatus indicates that the waveform should be off
+                case .disabled, .notConnected, .error:
+                    do {
+                        try waveformController?.turnOff()
+                    } catch {
+                        print("Error when trying to set printStatus for ElectroSpinner controller")
+                        print(error) }
+                default: return }
+        }
+    }
+    var safetyKeyState = false {
+        didSet {printStatus = self.determinePrintStatus() } }
+    var connectedState = false {
+        didSet {printStatus = self.determinePrintStatus() } }
+    var printingState = false{
+        didSet {printStatus = self.determinePrintStatus() } }
+    // TODO: Need to implement errorState logic
+    var errorState = false {
+        didSet {printStatus = self.determinePrintStatus() } }
     
     var startPrintTime: DispatchTime? = nil
      
@@ -63,7 +84,7 @@ extension ElectroSpinnerController {
 extension ElectroSpinnerController {
 
     func canStartPrinting() -> Bool {
-        let printStatus = self.printStatus()
+        let printStatus = self.determinePrintStatus()
         
         switch printStatus {
         case .readyForPrinting:
@@ -78,7 +99,7 @@ extension ElectroSpinnerController {
         // Check to see if printing is allowed.  Return error if printing can't be done.
         let canStartWaveform = self.canStartPrinting()
         if canStartWaveform == false {
-            let printStatus = self.printStatus()
+            let printStatus = self.determinePrintStatus()
             switch printStatus {
             case .disabled:
                 throw startPrintingError.disabled
@@ -93,6 +114,7 @@ extension ElectroSpinnerController {
         
         
         try waveformController?.turnOn()
+        waveformController?.voltage = waveformVoltage
         try waveformController?.runWaveform(for: printTime)
         
         self.printingState = true
@@ -111,7 +133,7 @@ extension ElectroSpinnerController {
     }
     
     
-    func printStatus() -> PrintStatus {
+    func determinePrintStatus() -> PrintStatus {
         if safetyKeyState == false {return .disabled}
         if connectedState == false {return .notConnected}
         if errorState == true {return .error}

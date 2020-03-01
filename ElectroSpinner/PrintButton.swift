@@ -9,7 +9,7 @@
 import Cocoa
 
 //@IBDesignable
-@IBDesignable class PrintButton: NSButton {
+class PrintButton: NSButton {
     var delegate: PrintButtonDelegate? = nil
     
     let color_disabled = NSColor.lightGray
