@@ -1,40 +1,13 @@
 //
-//  ElectroSpinnerViewController.swift
+//  ElextroSpinnerView.swift
 //  ElectroSpinner
 //
-//  Created by Owen Hildreth on 2/25/20.
+//  Created by Owen Hildreth on 2/29/20.
 //  Copyright © 2020 Hildreth Research Group. All rights reserved.
 //
 
+
 import Cocoa
-
-class ElectroSpinnerViewController: NSViewController {
-    
-    @IBOutlet weak var electrospinnerView: ElectroSpinnerView!
-    
-    @IBOutlet weak var button_connectToWaveFormGenerator: NSButton!
-    @IBOutlet weak var button_printButton: PrintButton!
-    
-    @IBOutlet weak var textField_setElectroSpinnerVoltage: NSTextField!
-    @IBOutlet weak var label_waveformVoltage: NSTextField!
-    
-    @IBOutlet weak var textField_setRunTime: NSTextField!
-    @IBOutlet weak var label_elapsedTime: NSTextField!
-    
-    let electrospinnerController = ElectroSpinnerController()
-    
-    var safetyKeyState = false
-    
-    
-    override func awakeFromNib() {
-        print("ElectrospinnerViewController awakeFromNib")
-        button_printButton.delegate = electrospinnerController
-    }
-    
-    
-    
-}
-
 
 class ElectroSpinnerView: NSView {
     
@@ -94,5 +67,3 @@ protocol ElectroSpinnerViewDelegate {
     func userSafetyKeyDown(sender: ElectroSpinnerView)
     func userSafetyKeyUp(sender: ElectroSpinnerView)
 }
-
-

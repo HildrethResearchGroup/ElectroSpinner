@@ -20,6 +20,7 @@
 		C0F7A6AE2409AD3C008490BD /* VISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6AC2409AD3C008490BD /* VISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C0F7A6B12409AD5C008490BD /* SwiftVISA.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */; };
 		C0F7A6B22409AD5C008490BD /* SwiftVISA.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C0F7A6B7240B6F2B008490BD /* ElectroSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerController.swift; sourceTree = "<group>"; };
 		C0F7A6AC2409AD3C008490BD /* VISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VISA.framework; path = ../../../../../../../Library/Frameworks/VISA.framework; sourceTree = "<group>"; };
 		C0F7A6B02409AD5C008490BD /* SwiftVISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftVISA.framework; path = ../../../../../Library/Frameworks/SwiftVISA.framework; sourceTree = "<group>"; };
+		C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +111,10 @@
 		C0B85A6F2403531A0082E43E /* ElectroSpinner */ = {
 			isa = PBXGroup;
 			children = (
+				C0F7A6B3240B6AAC008490BD /* Equipment Controllers */,
+				C0F7A6B5240B6ACF008490BD /* Views */,
+				C0F7A6B4240B6ABF008490BD /* View Controllers */,
 				C0B85A702403531A0082E43E /* AppDelegate.swift */,
-				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
-				C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */,
-				C0B85A8C240382C20082E43E /* PrintButton.swift */,
-				C05CC4BE2407298900C8C1BA /* WaveformController.swift */,
-				C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */,
 				C0B85A742403531C0082E43E /* MainMenu.xib */,
 				C0B85A722403531C0082E43E /* Assets.xcassets */,
 				C0B85A772403531C0082E43E /* Info.plist */,
@@ -140,6 +140,33 @@
 				C05CC4B9240726E100C8C1BA /* SwiftVISA.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C0F7A6B3240B6AAC008490BD /* Equipment Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
+				C05CC4BE2407298900C8C1BA /* WaveformController.swift */,
+				C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */,
+			);
+			path = "Equipment Controllers";
+			sourceTree = "<group>";
+		};
+		C0F7A6B4240B6ABF008490BD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C0F7A6B5240B6ACF008490BD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C0B85A8C240382C20082E43E /* PrintButton.swift */,
+				C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +276,7 @@
 				C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
 				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
+				C0F7A6B7240B6F2B008490BD /* ElectroSpinnerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

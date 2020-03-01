@@ -704,6 +704,9 @@
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R13-TD-B9n">
                         <rect key="frame" x="14" y="139" width="92" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="3Tb-GY-UL1"/>
+                        </constraints>
                         <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cyj-re-ge2">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -713,7 +716,7 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoB-Fy-flh">
-                        <rect key="frame" x="18" y="85" width="161" height="16"/>
+                        <rect key="frame" x="18" y="85" width="163" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Waveform Set Voltage [V]" id="8cF-g4-ekv">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -721,7 +724,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hoo-zL-8vz">
-                        <rect key="frame" x="190" y="85" width="37" height="16"/>
+                        <rect key="frame" x="190" y="85" width="100" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ikJ-Q0-JPd">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -747,7 +750,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oLN-yx-WdP">
-                        <rect key="frame" x="18" y="20" width="120" height="16"/>
+                        <rect key="frame" x="18" y="20" width="163" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Elapsed Time [sec]" id="mml-d7-FYK">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -755,7 +758,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-XT-BQ0">
-                        <rect key="frame" x="190" y="20" width="37" height="16"/>
+                        <rect key="frame" x="190" y="20" width="100" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KRB-Z0-U41">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -763,7 +766,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Amc-oE-OTF">
-                        <rect key="frame" x="18" y="45" width="96" height="16"/>
+                        <rect key="frame" x="18" y="45" width="163" height="16"/>
                         <textFieldCell key="cell" selectable="YES" title="Run Time [sec]" id="i1w-FP-9rc">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -795,16 +798,20 @@
                     </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" constant="192" id="3GE-2N-R5U"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="leading" secondItem="DRi-1N-Ku2" secondAttribute="trailing" constant="13" id="3TJ-ZS-HcQ"/>
                     <constraint firstAttribute="trailing" secondItem="X0H-R3-ba4" secondAttribute="trailing" constant="20" id="948-kk-FkU"/>
+                    <constraint firstItem="Amc-oE-OTF" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="ADb-qZ-PT0"/>
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="firstBaseline" secondItem="R13-TD-B9n" secondAttribute="baseline" constant="39" id="MWh-Qm-Wd4"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="N9F-98-lkv"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="baseline" constant="25" id="NF7-96-JzD"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="OF7-FC-mBb"/>
+                    <constraint firstItem="IoB-Fy-flh" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="Okx-OX-oHS"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="XK0-Hu-NKT"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="XN1-8D-JnK"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="firstBaseline" id="eBK-wP-cnM"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="centerY" secondItem="oLN-yx-WdP" secondAttribute="centerY" id="eU3-7h-Amf"/>
+                    <constraint firstItem="gaJ-7A-7by" firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" id="euh-t5-IBo"/>
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="guY-VP-NeB"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="centerY" secondItem="IoB-Fy-flh" secondAttribute="centerY" id="hXd-cj-vRj"/>
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="baseline" constant="25" id="iWK-fl-f2z"/>
@@ -813,8 +820,11 @@
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="nb6-zg-uy2"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="oiu-Nv-78j"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="firstBaseline" id="pVi-Jc-hie"/>
+                    <constraint firstItem="Hoo-zL-8vz" firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" id="q3R-Jc-T58"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="reH-Hv-XH2"/>
                     <constraint firstItem="X0H-R3-ba4" firstAttribute="top" secondItem="DRi-1N-Ku2" secondAttribute="top" id="u2d-71-cx4"/>
+                    <constraint firstItem="F6u-XT-BQ0" firstAttribute="trailing" secondItem="gaJ-7A-7by" secondAttribute="trailing" id="vzj-eY-bGV"/>
+                    <constraint firstItem="oLN-yx-WdP" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="waU-an-nOH"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="top" secondItem="IoB-Fy-flh" secondAttribute="bottom" constant="24" id="xFA-w0-eBY"/>
                 </constraints>
                 <connections>

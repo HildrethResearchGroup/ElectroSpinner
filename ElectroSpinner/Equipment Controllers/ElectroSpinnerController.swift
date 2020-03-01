@@ -53,7 +53,7 @@ class ElectroSpinnerController {
         didSet {printStatus = self.determinePrintStatus() } }
     var connectedState = false {
         didSet {printStatus = self.determinePrintStatus() } }
-    var printingState = false{
+    var printingState = false {
         didSet {printStatus = self.determinePrintStatus() } }
     // TODO: Need to implement errorState logic
     var errorState = false {
@@ -76,6 +76,11 @@ extension ElectroSpinnerController {
 
     func connectToWaveformGenerator() throws {
         try self.waveformController = self.makeWaveFormController()
+        
+        // Update state if waveform controller connected
+        if let _ = waveformController {
+            connectedState = true
+        } else { connectedState = false }
     }
 }
 
@@ -165,8 +170,8 @@ enum startPrintingError: Error {
 
 
 enum PrintStatus:Int {
-    case disabled = 1
     case notConnected
+    case disabled
     case readyForPrinting
     case printing
     case error
