@@ -32,8 +32,6 @@ class ElectroSpinnerViewController: NSViewController {
     
     // Mark: - Initializing
     override func awakeFromNib() {
-        print("ElectrospinnerViewController awakeFromNib")
-        
         setDelegates()
     }
     
@@ -46,20 +44,6 @@ class ElectroSpinnerViewController: NSViewController {
     
     
     // MARK: - Responding to User Inputs
-
-    /*
-    @IBAction func connectToWaveformGenerator(_ sender: Any) {
-        print("connectToWaveformGenerator - start")
-        do {
-            try electrospinnerController.connectToWaveformGenerator()
-        } catch  {
-            print("Failed to Connect to Waveform Generator")
-            print(error)
-        }
-        print("connectToWaveformGenerator - end")
-    }
- */
-    
     @IBAction func connectToWaveformGenerator(_ sender: Any) {
         print("connectToWaveformGenerator - start")
         do {
@@ -73,6 +57,7 @@ class ElectroSpinnerViewController: NSViewController {
     
     
     func setElectroSpinnerVoltage(_ voltage: Double) {
+        // Make that the voltage has changed before setting.
         if voltage != electrospinnerController.electrospinnerVoltage {
             self.electrospinnerController.electrospinnerVoltage = voltage
             self.label_waveformVoltage.stringValue = String(electrospinnerController.waveformVoltage)
@@ -80,6 +65,7 @@ class ElectroSpinnerViewController: NSViewController {
     }
     
     func setElectroSpinnerRunTime(_ runTime: Double) {
+        // Make sure the runTime has changed before changing
         if runTime != electrospinnerController.printTime {
             self.electrospinnerController.printTime = runTime
         }

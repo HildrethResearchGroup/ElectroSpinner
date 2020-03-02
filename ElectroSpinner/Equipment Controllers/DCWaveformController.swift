@@ -16,7 +16,7 @@ class DCWaveformController: WaveformController {
     var voltage = 0.0 {
         didSet {
             do {
-                try setVoltage(voltage)
+                try updateVoltage(voltage)
             } catch {
                 print("Error when trying to set voltage")
                 print(error) } }
@@ -25,14 +25,25 @@ class DCWaveformController: WaveformController {
     private let turnedOffVoltage = 0.0
     private var instrument: MessageBasedInstrument?
     var outputChannel: UInt
-    var waveformType: WaveformType = .DC
+    var waveformType: WaveformType = .DC {
+        didSet {
+            do {
+                try updateWaveform(waveformType)
+            } catch {
+                print("Error when trying to set Waveform")
+                print(error) }
+        }
+    }
+    
+    
     var impedence: ImpedenceSetting = .standard {
         didSet {
             do {
-                try setImpedence(impedence)
+                try updateImpedence(impedence)
             } catch {
                 print("Error when trying to set Impedence")
-                print(error) } }
+                print(error) }
+        }
     }
     
     
@@ -47,15 +58,7 @@ class DCWaveformController: WaveformController {
     required init?(identifier: String, outputChannel: UInt = 1) throws {
         
         print("Initilize instrument")
-        /*
-        guard let instrumentManager = try? InstrumentManager.default else {
-            print("Error when init instrumentManager")
-            return nil }
-        guard let instrument = try? instrumentManager.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
-            print("ERROR - DCWaveformController not initilized")
-            return nil
-        }
-         */
+
         
         guard var newInstrument = try? InstrumentManager.default?.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
             print("Could not make waveform generator")
@@ -68,7 +71,7 @@ class DCWaveformController: WaveformController {
         
         // TODO: remove turnON once connections are working
         try turnOn()
-        try setImpedence(self.impedence)
+        try updateImpedence(self.impedence)
     }
 }
 
@@ -85,7 +88,7 @@ extension DCWaveformController {
     
     - Parameter impedenceSetting: enum of the target impedence
     */
-    func setImpedence(_ impedenceSetting: ImpedenceSetting) throws {
+    func updateImpedence(_ impedenceSetting: ImpedenceSetting) throws {
         let outputString = "OUTPUT\(outputChannel)"
         let impedenceString = impedenceSetting.command()
         let commandString = outputString + ":" + impedenceString
@@ -98,21 +101,21 @@ extension DCWaveformController {
     
     - Parameter voltage: The target output voltage
     */
-    func setVoltage(_ voltage: Double) throws {
+    func updateVoltage(_ voltage: Double) throws {
         try instrument?.write("SOURce\(outputChannel):VOLTage:OFFSet \(voltage)")
     }
     
-    func setWaveform() throws {
-        let waveformCommand = self.waveformType.command()
+    func updateWaveform(_ waveform: WaveformType) throws {
+        let waveformCommand = waveformType.command()
         try instrument?.write("SOURce\(outputChannel):\(waveformCommand)")
     }
     
     
     func turnOn() throws {
         // Set the waveform (DC in this case)
-        try setWaveform()
+        try updateWaveform(self.waveformType)
         // Turn on with 0.0 volts for safety
-        try setVoltage(startupVoltage)
+        try updateVoltage(startupVoltage)
 
         try instrument?.write("OUTPUT\(outputChannel) ON")
 
@@ -120,7 +123,7 @@ extension DCWaveformController {
     
 
     func turnOff() throws {
-        try setVoltage(turnedOffVoltage)
+        try updateVoltage(turnedOffVoltage)
         try instrument?.write("OUTPUT\(outputChannel) OFF")
         /*
         do {
@@ -135,7 +138,7 @@ extension DCWaveformController  {
     func runWaveform(for runTime: Double) throws {
         // Rerun turnOn and setVoltage to make sure the system is definitely on an ready to run the waveform
         try turnOn()
-        try setVoltage(voltage)
+        try updateVoltage(voltage)
         
         // Make sure that the input runTime isn't negative
         if runTime < 0 {return}

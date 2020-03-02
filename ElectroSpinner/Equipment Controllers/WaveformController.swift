@@ -19,11 +19,11 @@ protocol WaveformController: class {
     
     func getIdentifier() throws -> String?
     
-    func setImpedence(_ impedenceSetting: ImpedenceSetting) throws
+    func updateImpedence(_ impedenceSetting: ImpedenceSetting) throws
     
-    func setVoltage(_ voltage: Double) throws
+    func updateVoltage(_ voltage: Double) throws
     
-    func setWaveform() throws
+    func updateWaveform(_ waveform: WaveformType) throws
     
     func turnOn() throws
     
