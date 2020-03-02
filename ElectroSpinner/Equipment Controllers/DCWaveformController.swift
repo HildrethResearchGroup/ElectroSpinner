@@ -60,7 +60,7 @@ class DCWaveformController: WaveformController {
         print("Initilize instrument")
 
         
-        guard var newInstrument = try? InstrumentManager.default?.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
+        guard let newInstrument = try? InstrumentManager.default?.makeInstrument(identifier: identifier) as? MessageBasedInstrument else {
             print("Could not make waveform generator")
                 return nil
         }

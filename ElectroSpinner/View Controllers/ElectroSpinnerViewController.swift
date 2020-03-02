@@ -23,11 +23,19 @@ class ElectroSpinnerViewController: NSViewController {
     @IBOutlet weak var label_elapsedTime: NSTextField!
     
     // MARK: Electrospinner Controller
-    let electrospinnerController = ElectroSpinnerController()
+    let electrospinnerController: ElectroSpinnerController
+    let printStatusController: PrintStatusController
     
     // MARK: State Variables
     var safetyKeyState = false
     var printButtonState = false
+    
+     
+    required init?(coder: NSCoder) {
+        printStatusController = PrintStatusController()
+        electrospinnerController = ElectroSpinnerController(printStatusController)
+        super.init(coder: coder)
+    }
     
     
     // Mark: - Initializing
@@ -36,14 +44,15 @@ class ElectroSpinnerViewController: NSViewController {
     }
     
     func setDelegates() {
-        button_printButton.delegate = electrospinnerController
-        electrospinnerView.delegate = self as? ElectroSpinnerViewDelegate
+        button_printButton.delegate = printStatusController as PrintButtonDelegate
+        electrospinnerView.delegate = printStatusController as ElectroSpinnerViewDelegate
+        
         textField_setElectroSpinnerVoltage.delegate = self as NSTextFieldDelegate
         textField_setRunTime.delegate = self as NSTextFieldDelegate
     }
     
     
-    // MARK: - Responding to User Inputs
+    // MARK: - IBActions
     @IBAction func connectToWaveformGenerator(_ sender: Any) {
         print("connectToWaveformGenerator - start")
         do {
@@ -56,10 +65,16 @@ class ElectroSpinnerViewController: NSViewController {
     }
     
     
+    
+    // MARK: - Communicating with the Electrospinner Controller
     func setElectroSpinnerVoltage(_ voltage: Double) {
         // Make that the voltage has changed before setting.
         if voltage != electrospinnerController.electrospinnerVoltage {
+            
+            // Set the voltage for the electrospinner controller
             self.electrospinnerController.electrospinnerVoltage = voltage
+            
+            // Update the waveformVoltage label
             self.label_waveformVoltage.stringValue = String(electrospinnerController.waveformVoltage)
         }
     }
@@ -89,6 +104,13 @@ extension ElectroSpinnerViewController: NSTextFieldDelegate {
         }
     }
 }
+
+
+
+
+
+
+   
 
 
 
