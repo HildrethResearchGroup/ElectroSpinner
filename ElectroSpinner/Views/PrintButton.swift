@@ -20,6 +20,11 @@ class PrintButton: NSButton {
     
     var status = PrintStatus.readyForPrinting {
         didSet {
+            if status == .disabled {
+                self.isEnabled = false
+            } else {
+                self.isEnabled = true
+            }
             self.needsDisplay = true
         }
     }
@@ -102,7 +107,6 @@ protocol PrintButtonDelegate: AnyObject {
     func printButtonUp(sender: PrintButton)
     
     func printButtonStatus(sender: PrintButton) -> PrintStatus
-    
 }
 
 

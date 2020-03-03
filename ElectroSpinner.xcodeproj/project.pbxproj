@@ -91,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C04F48A3240E0880002D4777 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 		C0B85A642403531A0082E43E = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +121,7 @@
 		C0B85A6F2403531A0082E43E /* ElectroSpinner */ = {
 			isa = PBXGroup;
 			children = (
+				C04F48A3240E0880002D4777 /* Data Models */,
 				C0F7A6B3240B6AAC008490BD /* Equipment Controllers */,
 				C0F7A6B5240B6ACF008490BD /* Views */,
 				C0F7A6B4240B6ABF008490BD /* View Controllers */,
@@ -150,7 +159,6 @@
 				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
 				C05CC4BE2407298900C8C1BA /* WaveformController.swift */,
 				C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */,
-				C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */,
 			);
 			path = "Equipment Controllers";
 			sourceTree = "<group>";

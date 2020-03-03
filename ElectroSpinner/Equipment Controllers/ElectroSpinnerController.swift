@@ -11,7 +11,7 @@ import SwiftVISA
 
 class ElectroSpinnerController {
     let printStatusDataModel: PrintStatusDataModel
-    
+  
     
     init(_ withPrintStatusDataModel: PrintStatusDataModel) {
         printStatusDataModel = withPrintStatusDataModel
@@ -30,6 +30,7 @@ class ElectroSpinnerController {
     let amplifierGain = 1000.0
     var printTime = 0.0
     
+    
     // MARK: Wavefunction Controller
     var waveformController: DCWaveformController? {
         didSet {
@@ -39,11 +40,10 @@ class ElectroSpinnerController {
         }
     }
     
-
-
+    func printStatusDidUpdate() {
+        // TODO: Implement printStatusDidUpdate
+    }
     
-    
-     
 }
 
 
@@ -61,6 +61,7 @@ extension ElectroSpinnerController {
         return controller
     }
 
+    
     func connectToWaveformGenerator() throws {
         print("connectToWaveformGenerator")
         try self.waveformController = self.makeWaveFormController()
@@ -114,7 +115,6 @@ extension ElectroSpinnerController {
     }
         
         
-
     func stopPrinting() {
         print("Test")
         do {
@@ -126,35 +126,15 @@ extension ElectroSpinnerController {
     }
     
     
-
-    
     
     func elapsedTime() -> Double {
         if printStatusDataModel.startPrintTime == nil {
             return 0.0
         }
-        
         return 0.0
     }
-    
 }
 
-
-// MARK: - PrintStatusDataModel Delegate
-extension ElectroSpinnerController: PrintStatusDataModelDelegate {
-    func printStatusDidUpdate(updatedPrintStatus: PrintStatus) {
-        switch updatedPrintStatus {
-        // Turn off the waveform generator if the printStatus indicates that the waveform should be off
-        case .disabled, .notConnected, .error:
-            do {
-                try waveformController?.turnOff()
-            } catch {
-                print("Error when trying to set printStatus for ElectroSpinner controller")
-                print(error) }
-        default: return }
-    }
-    
-}
 
 // MARK: - Enums
 enum startPrintingError: Error {

@@ -32,7 +32,9 @@ class ElectroSpinnerViewController: NSViewController {
     
      
     required init?(coder: NSCoder) {
+        // Create the PrintStatusDataModel to control the print state
         printStatusDataModel = PrintStatusDataModel()
+        // Create the ElectroSpinnerController and pass it the printStatusDataModel
         electrospinnerController = ElectroSpinnerController(printStatusDataModel)
         super.init(coder: coder)
     }
@@ -108,6 +110,20 @@ extension ElectroSpinnerViewController: NSTextFieldDelegate {
 
 
 
+// MARK: - PrintStatusDataModel Delegate
+extension ElectroSpinnerViewController: PrintStatusDataModelDelegate {
+    func printStatusDidUpdate(updatedPrintStatus: PrintStatus) {
+        switch updatedPrintStatus {
+        // Turn off the waveform generator if the printStatus indicates that the waveform should be off
+        case .disabled, .notConnected, .error:
+            do {
+                try electrospinnerController.waveformController?.turnOff()
+            } catch {
+                print("Error when trying to set printStatus for ElectroSpinner controller")
+                print(error) }
+        default: return }
+    }
+}
 
 
    

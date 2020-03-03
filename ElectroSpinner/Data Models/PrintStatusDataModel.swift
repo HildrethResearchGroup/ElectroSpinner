@@ -44,8 +44,10 @@ class PrintStatusDataModel {
               
         return .readyForPrinting
     }
+    
 }
 
+// MARK: - PrintStatusDataModelDelegate
 protocol PrintStatusDataModelDelegate {
     func printStatusDidUpdate(updatedPrintStatus: PrintStatus)
 }
@@ -62,19 +64,20 @@ extension PrintStatusDataModel: PrintButtonDelegate {
     }
     
     func printButtonStatus(sender: PrintButton) -> PrintStatus {
-        return .printing
+        return printStatus
     }
 }
+
 
 // MARK: - ElectroSpinnerViewDelegate
 extension PrintStatusDataModel: ElectroSpinnerViewDelegate {
     func userSafetyKeyDown(sender: ElectroSpinnerView) {
         print("userSafetyKeyDown")
-        //electrospinnerController.safetyKeyState = true
+        safetyKeyState = true
     }
     
     func userSafetyKeyUp(sender: ElectroSpinnerView) {
         print("userSafetyKeyUp")
-        //electrospinnerController.safetyKeyState = false
+        safetyKeyState = false
     }
 }

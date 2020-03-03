@@ -12,7 +12,6 @@ import Cocoa
 class ElectroSpinnerView: NSView {
     
     var safetyKeyState = false {
-        
         didSet {
             if safetyKeyState == false {
                 print("set safetyKeyState to false")
@@ -46,7 +45,6 @@ class ElectroSpinnerView: NSView {
             if self.safetyKeyState == false {
                 self.safetyKeyState = true
             }
-            //delegate?.userSafetyKeyDown(sender: self)
         }
     }
     
@@ -58,10 +56,12 @@ class ElectroSpinnerView: NSView {
             if self.safetyKeyState == true {
                 self.safetyKeyState = false
             }
-            //delegate?.userSafetyKeyUp(sender: self)
         }
     }
 }
+
+
+
 
 protocol ElectroSpinnerViewDelegate {
     func userSafetyKeyDown(sender: ElectroSpinnerView)
