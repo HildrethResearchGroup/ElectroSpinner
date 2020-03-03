@@ -24,7 +24,7 @@ class ElectroSpinnerViewController: NSViewController {
     
     // MARK: Electrospinner Controller
     let electrospinnerController: ElectroSpinnerController
-    let printStatusController: PrintStatusController
+    let printStatusDataModel: PrintStatusDataModel
     
     // MARK: State Variables
     var safetyKeyState = false
@@ -32,8 +32,8 @@ class ElectroSpinnerViewController: NSViewController {
     
      
     required init?(coder: NSCoder) {
-        printStatusController = PrintStatusController()
-        electrospinnerController = ElectroSpinnerController(printStatusController)
+        printStatusDataModel = PrintStatusDataModel()
+        electrospinnerController = ElectroSpinnerController(printStatusDataModel)
         super.init(coder: coder)
     }
     
@@ -44,8 +44,8 @@ class ElectroSpinnerViewController: NSViewController {
     }
     
     func setDelegates() {
-        button_printButton.delegate = printStatusController as PrintButtonDelegate
-        electrospinnerView.delegate = printStatusController as ElectroSpinnerViewDelegate
+        button_printButton.delegate = printStatusDataModel as PrintButtonDelegate
+        electrospinnerView.delegate = printStatusDataModel as ElectroSpinnerViewDelegate
         
         textField_setElectroSpinnerVoltage.delegate = self as NSTextFieldDelegate
         textField_setRunTime.delegate = self as NSTextFieldDelegate

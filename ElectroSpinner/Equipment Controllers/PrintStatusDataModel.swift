@@ -1,5 +1,5 @@
 //
-//  PrintStatusController.swift
+//  PrintStatusDataModel.swift
 //  ElectroSpinner
 //
 //  Created by Owen Hildreth on 3/1/20.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-class PrintStatusController {
-    var delegate: PrintStatusControllerDelegate?
+class PrintStatusDataModel {
+    var delegate: PrintStatusDataModelDelegate?
     
     // MARK: State Variables
     var printButtonState = false {
@@ -46,13 +46,13 @@ class PrintStatusController {
     }
 }
 
-protocol PrintStatusControllerDelegate {
+protocol PrintStatusDataModelDelegate {
     func printStatusDidUpdate(updatedPrintStatus: PrintStatus)
 }
 
 
 // MARK: - PrintButtonDelegate
-extension PrintStatusController: PrintButtonDelegate {
+extension PrintStatusDataModel: PrintButtonDelegate {
     func printButtonDown(sender: PrintButton) {
         print("printButtonDown")
     }
@@ -67,7 +67,7 @@ extension PrintStatusController: PrintButtonDelegate {
 }
 
 // MARK: - ElectroSpinnerViewDelegate
-extension PrintStatusController: ElectroSpinnerViewDelegate {
+extension PrintStatusDataModel: ElectroSpinnerViewDelegate {
     func userSafetyKeyDown(sender: ElectroSpinnerView) {
         print("userSafetyKeyDown")
         //electrospinnerController.safetyKeyState = true

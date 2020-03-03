@@ -10,11 +10,11 @@ import Foundation
 import SwiftVISA
 
 class ElectroSpinnerController {
-    let printStatusController: PrintStatusController
+    let printStatusDataModel: PrintStatusDataModel
     
     
-    init(_ withPrintStatusController: PrintStatusController) {
-        printStatusController = withPrintStatusController
+    init(_ withPrintStatusDataModel: PrintStatusDataModel) {
+        printStatusDataModel = withPrintStatusDataModel
     }
     
     // MARK: Input Variables
@@ -34,8 +34,8 @@ class ElectroSpinnerController {
     var waveformController: DCWaveformController? {
         didSet {
             if let _ = waveformController {
-                printStatusController.connectedState = true
-            } else {printStatusController.connectedState = false}
+                printStatusDataModel.connectedState = true
+            } else {printStatusDataModel.connectedState = false}
         }
     }
     
@@ -67,8 +67,8 @@ extension ElectroSpinnerController {
         
         // Update state if waveform controller connected
         if let _ = waveformController {
-            printStatusController.connectedState = true
-        } else { printStatusController.connectedState = false }
+            printStatusDataModel.connectedState = true
+        } else { printStatusDataModel.connectedState = false }
     }
 }
 
@@ -77,7 +77,7 @@ extension ElectroSpinnerController {
 extension ElectroSpinnerController {
 
     func canStartPrinting() -> Bool {
-        let printStatus = printStatusController.determinePrintStatus()
+        let printStatus = printStatusDataModel.determinePrintStatus()
         
         switch printStatus {
         case .readyForPrinting:
@@ -92,7 +92,7 @@ extension ElectroSpinnerController {
         // Check to see if printing is allowed.  Return error if printing can't be done.
         let canStartWaveform = self.canStartPrinting()
         if canStartWaveform == false {
-            let printStatus = printStatusController.determinePrintStatus()
+            let printStatus = printStatusDataModel.determinePrintStatus()
             switch printStatus {
             case .disabled:
                 throw startPrintingError.disabled
@@ -110,7 +110,7 @@ extension ElectroSpinnerController {
         waveformController?.voltage = waveformVoltage
         try waveformController?.runWaveform(for: printTime)
         
-        printStatusController.printingState = true
+        printStatusDataModel.printingState = true
     }
         
         
@@ -121,8 +121,8 @@ extension ElectroSpinnerController {
             try waveformController?.stopWaveform()
         } catch {print(error)}
         
-        printStatusController.startPrintTime = nil
-        printStatusController.printingState = false
+        printStatusDataModel.startPrintTime = nil
+        printStatusDataModel.printingState = false
     }
     
     
@@ -130,7 +130,7 @@ extension ElectroSpinnerController {
     
     
     func elapsedTime() -> Double {
-        if printStatusController.startPrintTime == nil {
+        if printStatusDataModel.startPrintTime == nil {
             return 0.0
         }
         
@@ -140,8 +140,8 @@ extension ElectroSpinnerController {
 }
 
 
-// MARK: - PrintStatusControllerDelegate
-extension ElectroSpinnerController: PrintStatusControllerDelegate {
+// MARK: - PrintStatusDataModel Delegate
+extension ElectroSpinnerController: PrintStatusDataModelDelegate {
     func printStatusDidUpdate(updatedPrintStatus: PrintStatus) {
         switch updatedPrintStatus {
         // Turn off the waveform generator if the printStatus indicates that the waveform should be off

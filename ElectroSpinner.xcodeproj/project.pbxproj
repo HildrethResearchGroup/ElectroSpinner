@@ -20,7 +20,7 @@
 		C0B85A822403531C0082E43E /* ElectroSpinnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A812403531C0082E43E /* ElectroSpinnerTests.swift */; };
 		C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8C240382C20082E43E /* PrintButton.swift */; };
 		C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */; };
-		C0F719C2240C9D71008BC1D3 /* PrintStatusController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F719C1240C9D71008BC1D3 /* PrintStatusController.swift */; };
+		C0F719C2240C9D71008BC1D3 /* PrintStatusDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */; };
 		C0F7A6B7240B6F2B008490BD /* ElectroSpinnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,7 +66,7 @@
 		C0B85A832403531C0082E43E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C0B85A8C240382C20082E43E /* PrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintButton.swift; sourceTree = "<group>"; };
 		C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerController.swift; sourceTree = "<group>"; };
-		C0F719C1240C9D71008BC1D3 /* PrintStatusController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintStatusController.swift; sourceTree = "<group>"; };
+		C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintStatusDataModel.swift; sourceTree = "<group>"; };
 		C0F7A6AC2409AD3C008490BD /* VISA.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VISA.framework; path = ../../../../../../../Library/Frameworks/VISA.framework; sourceTree = "<group>"; };
 		C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,7 +150,7 @@
 				C0B85A8E24038F330082E43E /* ElectroSpinnerController.swift */,
 				C05CC4BE2407298900C8C1BA /* WaveformController.swift */,
 				C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */,
-				C0F719C1240C9D71008BC1D3 /* PrintStatusController.swift */,
+				C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */,
 			);
 			path = "Equipment Controllers";
 			sourceTree = "<group>";
@@ -276,7 +276,7 @@
 				C05CC4BF2407298900C8C1BA /* WaveformController.swift in Sources */,
 				C0B85A8F24038F330082E43E /* ElectroSpinnerController.swift in Sources */,
 				C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */,
-				C0F719C2240C9D71008BC1D3 /* PrintStatusController.swift in Sources */,
+				C0F719C2240C9D71008BC1D3 /* PrintStatusDataModel.swift in Sources */,
 				C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
 				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
