@@ -29,6 +29,8 @@ class PrintStatusDataModel {
         didSet {
             if printStatus != oldValue {
                 delegate?.printStatusDidUpdate(updatedPrintStatus: printStatus)
+                let notification = Notification(name: .printStatusDidChange, object: self, userInfo: [printStatusKey: printStatus])
+                NotificationCenter.default.post(notification)
             }
         }
     }
@@ -44,7 +46,6 @@ class PrintStatusDataModel {
               
         return .readyForPrinting
     }
-    
 }
 
 // MARK: - PrintStatusDataModelDelegate
