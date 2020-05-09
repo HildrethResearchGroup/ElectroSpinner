@@ -17,8 +17,19 @@ class PrintStatusDataModel {
     }
     
     // MARK: State Variables
-    private var printButtonState = false {
-        didSet {printStatus = self.determinePrintStatus() } }
+    /**
+    var printButtonState: Bool {
+        get {
+            switch printStatus {
+            case .printing, .readyForPrinting:
+                return true
+            case .notConnected, .disabled, .error:
+                return false
+            }
+        }
+    }
+     */
+    
     private var safetyState = true {
         didSet {printStatus = self.determinePrintStatus() } }
 
@@ -33,6 +44,7 @@ class PrintStatusDataModel {
                 delegate?.printStatusDidUpdate(updatedPrintStatus: printStatus)
                 let notification = Notification(name: .printStatusDidChange, object: self, userInfo: [printStatusKey: printStatus])
                 NotificationCenter.default.post(notification)
+                
             }
         }
     }

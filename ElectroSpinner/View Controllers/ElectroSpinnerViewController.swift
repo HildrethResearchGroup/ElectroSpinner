@@ -113,6 +113,10 @@ class ElectroSpinnerViewController: NSViewController {
         guard let equipmentStatus = userInfo[dcWaveformGeneratorStatusKey] as? EquipmentStatus else {return}
         self.dcWaveformGeneratorStatusIndicator.status = equipmentStatus
     }
+    
+    @objc func updatePrintButtonStatus(_ notification: Notification) {
+        self.button_printButton.status = self.printStatusDataModel.printStatus
+    }
 }
 
 

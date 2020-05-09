@@ -111,7 +111,6 @@ extension PrintButton {
 
 
 // MARK: - Delegate Protocol
-
 protocol PrintButtonDelegate: AnyObject {
     func printButtonDown(sender: PrintButton)
     func printButtonUp(sender: PrintButton)
@@ -122,6 +121,8 @@ protocol PrintButtonDelegate: AnyObject {
 protocol PrintButtonDataSource: AnyObject {
      func printButtonStatus(sender: PrintButton) -> PrintStatus
 }
+
+
 
 
 

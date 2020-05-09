@@ -86,13 +86,13 @@ extension ElectroSpinnerController {
             let printStatus = printStatusDataModel.determinePrintStatus()
             switch printStatus {
             case .disabled:
-                throw startPrintingError.disabled
+                throw StartPrintingError.disabled
             case .notConnected:
-                throw startPrintingError.notConnected
+                throw StartPrintingError.disabled
             case .printing:
-                throw startPrintingError.alreadyPrinting
+                throw StartPrintingError.disabled
             default:
-                throw startPrintingError.error
+                throw StartPrintingError.disabled
             }
         }
         
@@ -150,7 +150,7 @@ extension ElectroSpinnerController: PrintButtonDelegate {
 
 
 // MARK: - Enums
-enum startPrintingError: Error {
+enum StartPrintingError: Error {
     case alreadyPrinting
     case disabled
     case notConnected
