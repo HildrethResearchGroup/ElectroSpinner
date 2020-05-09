@@ -11,7 +11,8 @@ import Cocoa
 class ElectroSpinnerViewController: NSViewController {
     
     // MARK: IBOutlets
-    @IBOutlet weak var electrospinnerView: ElectroSpinnerView!
+    
+    @IBOutlet weak var dcWaveformGeneratorStatusIndicator: EquipmentStatusIndicator!
     
     @IBOutlet weak var button_connectToWaveFormGenerator: NSButton!
     @IBOutlet weak var button_printButton: PrintButton!
@@ -22,22 +23,31 @@ class ElectroSpinnerViewController: NSViewController {
     @IBOutlet weak var textField_setRunTime: NSTextField!
     @IBOutlet weak var label_elapsedTime: NSTextField!
     
-    // MARK: Electrospinner Controller
+    // MARK: - Electrospinner Controller
     let electrospinnerController: ElectroSpinnerController
     let printStatusDataModel: PrintStatusDataModel
     
-    // MARK: State Variables
-    var safetyKeyState = false
-    var printButtonState = false
     
-     
+    // MARK: - Initializers
     required init?(coder: NSCoder) {
         // Create the PrintStatusDataModel to control the print state
         printStatusDataModel = PrintStatusDataModel()
+        
         // Create the ElectroSpinnerController and pass it the printStatusDataModel
         electrospinnerController = ElectroSpinnerController(printStatusDataModel)
+        
+        
+        
+        // Required call to super.init
         super.init(coder: coder)
+        
+        // Set for Notifications
+        setupNotifications()
+        
+        
     }
+    
+
     
     
     // Mark: - Initializing
@@ -46,8 +56,9 @@ class ElectroSpinnerViewController: NSViewController {
     }
     
     func setDelegates() {
-        button_printButton.delegate = printStatusDataModel as PrintButtonDelegate
-        electrospinnerView.delegate = printStatusDataModel as ElectroSpinnerViewDelegate
+        button_printButton.datasource = printStatusDataModel
+        button_printButton.delegate = electrospinnerController
+        //electrospinnerView.delegate = printStatusDataModel as ElectroSpinnerViewDelegate
         
         textField_setElectroSpinnerVoltage.delegate = self as NSTextFieldDelegate
         textField_setRunTime.delegate = self as NSTextFieldDelegate
@@ -87,6 +98,21 @@ class ElectroSpinnerViewController: NSViewController {
             self.electrospinnerController.printTime = runTime
         }
     }
+    
+    // MARK: - Notifications
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateDCEquipmentStatusIndicator(_:)),
+                                               name: .dcWaveformGeneratorStatusDidChange,
+                                               object: nil)
+    }
+    
+    @objc func updateDCEquipmentStatusIndicator(_ notification: Notification) {
+        
+        guard let userInfo = notification.userInfo else {return}
+        guard let equipmentStatus = userInfo[dcWaveformGeneratorStatusKey] as? EquipmentStatus else {return}
+        self.dcWaveformGeneratorStatusIndicator.status = equipmentStatus
+    }
 }
 
 
@@ -116,11 +142,7 @@ extension ElectroSpinnerViewController: PrintStatusDataModelDelegate {
         switch updatedPrintStatus {
         // Turn off the waveform generator if the printStatus indicates that the waveform should be off
         case .disabled, .notConnected, .error:
-            do {
-                try electrospinnerController.waveformController?.turnOff()
-            } catch {
-                print("Error when trying to set printStatus for ElectroSpinner controller")
-                print(error) }
+            electrospinnerController.waveformController?.stopWaveform()
         default: return }
     }
 }

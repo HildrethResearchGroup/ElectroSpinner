@@ -15,6 +15,8 @@
 		C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */; };
 		C05CC4BF2407298900C8C1BA /* WaveformController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05CC4BE2407298900C8C1BA /* WaveformController.swift */; };
 		C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */; };
+		C06B35692465EB45008848EC /* EquipmentStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B35682465EB45008848EC /* EquipmentStatusIndicator.swift */; };
+		C06B356B2465EC09008848EC /* EquipmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06B356A2465EC09008848EC /* EquipmentStatus.swift */; };
 		C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0B85A702403531A0082E43E /* AppDelegate.swift */; };
 		C0B85A732403531C0082E43E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C0B85A722403531C0082E43E /* Assets.xcassets */; };
 		C0B85A762403531C0082E43E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0B85A742403531C0082E43E /* MainMenu.xib */; };
@@ -57,6 +59,8 @@
 		C05CC4BC240728D500C8C1BA /* DCWaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DCWaveformController.swift; sourceTree = "<group>"; };
 		C05CC4BE2407298900C8C1BA /* WaveformController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveformController.swift; sourceTree = "<group>"; };
 		C05F7DDE240627EA00A65674 /* ElectroSpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElectroSpinnerViewController.swift; sourceTree = "<group>"; };
+		C06B35682465EB45008848EC /* EquipmentStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentStatusIndicator.swift; sourceTree = "<group>"; };
+		C06B356A2465EC09008848EC /* EquipmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EquipmentStatus.swift; sourceTree = "<group>"; };
 		C0B85A6D2403531A0082E43E /* ElectroSpinner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElectroSpinner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0B85A702403531A0082E43E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0B85A722403531C0082E43E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				C0F719C1240C9D71008BC1D3 /* PrintStatusDataModel.swift */,
+				C06B356A2465EC09008848EC /* EquipmentStatus.swift */,
 			);
 			path = "Data Models";
 			sourceTree = "<group>";
@@ -123,12 +128,12 @@
 		C0B85A6F2403531A0082E43E /* ElectroSpinner */ = {
 			isa = PBXGroup;
 			children = (
+				C04FFDBD24144BF100437A11 /* Notifications.swift */,
 				C04F48A3240E0880002D4777 /* Data Models */,
 				C0F7A6B3240B6AAC008490BD /* Equipment Controllers */,
 				C0F7A6B5240B6ACF008490BD /* Views */,
 				C0F7A6B4240B6ABF008490BD /* View Controllers */,
 				C0B85A702403531A0082E43E /* AppDelegate.swift */,
-				C04FFDBD24144BF100437A11 /* Notifications.swift */,
 				C0B85A742403531C0082E43E /* MainMenu.xib */,
 				C0B85A722403531C0082E43E /* Assets.xcassets */,
 				C0B85A772403531C0082E43E /* Info.plist */,
@@ -179,6 +184,7 @@
 			children = (
 				C0B85A8C240382C20082E43E /* PrintButton.swift */,
 				C0F7A6B6240B6F2B008490BD /* ElectroSpinnerView.swift */,
+				C06B35682465EB45008848EC /* EquipmentStatusIndicator.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,9 +295,11 @@
 				C05F7DDF240627EA00A65674 /* ElectroSpinnerViewController.swift in Sources */,
 				C04FFDBE24144BF100437A11 /* Notifications.swift in Sources */,
 				C0F719C2240C9D71008BC1D3 /* PrintStatusDataModel.swift in Sources */,
+				C06B35692465EB45008848EC /* EquipmentStatusIndicator.swift in Sources */,
 				C05CC4BD240728D500C8C1BA /* DCWaveformController.swift in Sources */,
 				C0B85A712403531A0082E43E /* AppDelegate.swift in Sources */,
 				C0B85A8D240382C20082E43E /* PrintButton.swift in Sources */,
+				C06B356B2465EC09008848EC /* EquipmentStatus.swift in Sources */,
 				C0F7A6B7240B6F2B008490BD /* ElectroSpinnerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

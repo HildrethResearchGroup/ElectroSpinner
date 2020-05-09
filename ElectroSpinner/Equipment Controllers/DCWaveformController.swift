@@ -12,6 +12,13 @@ import SwiftVISA
 class DCWaveformController: WaveformController {
     
     // MARK: - Properties
+    private var equipmentStatus = EquipmentStatus.notConnected {
+        didSet {
+            let notification = Notification(name: .dcWaveformGeneratorStatusDidChange, object: self, userInfo: [dcWaveformGeneratorStatusKey : equipmentStatus])
+            NotificationCenter.default.post(notification)
+        }
+    }
+    
     static var minimumDelay: UInt32 = 2_000_000
     var voltage = 0.0 {
         didSet {
@@ -68,9 +75,8 @@ class DCWaveformController: WaveformController {
         
         self.instrument = newInstrument
         self.outputChannel = outputChannel
+        self.equipmentStatus = .connected
         
-        // TODO: remove turnON once connections are working
-        try turnOn()
         try updateImpedence(self.impedence)
     }
 }
@@ -111,6 +117,7 @@ extension DCWaveformController {
     }
     
     
+    /**
     func turnOn() throws {
         // Set the waveform (DC in this case)
         try updateWaveform(self.waveformType)
@@ -118,6 +125,7 @@ extension DCWaveformController {
         try updateVoltage(startupVoltage)
 
         try instrument?.write("OUTPUT\(outputChannel) ON")
+        self.equipmentStatus = .inUse
 
     }
     
@@ -125,20 +133,17 @@ extension DCWaveformController {
     func turnOff() throws {
         try updateVoltage(turnedOffVoltage)
         try instrument?.write("OUTPUT\(outputChannel) OFF")
-        /*
-        do {
-            try instrument.write("OUTPUT\(outputChannel) OFF")
-        } catch {print(error)}
-        */
+        self.equipmentStatus = .connected
     }
+ */
 }
 
 // MARK: - Running the Waveform
 extension DCWaveformController  {
     func runWaveform(for runTime: Double) throws {
         // Rerun turnOn and setVoltage to make sure the system is definitely on an ready to run the waveform
-        try turnOn()
         try updateVoltage(voltage)
+        self.equipmentStatus = .inUse
         
         // Make sure that the input runTime isn't negative
         if runTime < 0 {return}
@@ -147,13 +152,24 @@ extension DCWaveformController  {
         let runLength = DispatchTime.now() + Double(runTime)
         
         // Have stopWaveform run after runLength
+        
         DispatchQueue.main.asyncAfter(deadline: runLength, execute: {
-            try self.stopWaveform()
-            } as! @convention(block) () -> Void)
+            self.stopWaveform()
+            } as @convention(block) () -> Void)
+
+        
     }
     
-    func stopWaveform() throws {
-        try instrument?.write("OUTPUT\(outputChannel) OFF")
+    // TODO: Need to make stopWaveform a throwing function.  However, I need to figure out how to do asyn throwing functions
+    func stopWaveform() {
+        do {
+            try instrument?.write("OUTPUT\(outputChannel) OFF")
+            self.equipmentStatus = .connected
+        } catch {
+            print(error)
+            self.equipmentStatus = .notConnected
+        }
+
     }
 }
 

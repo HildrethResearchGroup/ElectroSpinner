@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -690,7 +690,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
             <value key="minSize" type="size" width="480" height="187"/>
             <value key="maxSize" type="size" width="480" height="187"/>
-            <view key="contentView" id="EiT-Mj-1SZ" customClass="ElectroSpinnerView" customModule="ElectroSpinner" customModuleProvider="target">
+            <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="187"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -797,12 +797,18 @@
                             <constraint firstAttribute="width" secondItem="X0H-R3-ba4" secondAttribute="height" id="vCy-OP-DCC"/>
                         </constraints>
                     </customView>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="scg-in-yKN" customClass="EquipmentStatusIndicator" customModule="ElectroSpinner" customModuleProvider="target">
+                        <rect key="frame" x="108" y="146" width="20" height="21"/>
+                    </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="scg-in-yKN" firstAttribute="leading" secondItem="R13-TD-B9n" secondAttribute="trailing" constant="8" id="1Co-DJ-hAM"/>
                     <constraint firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" constant="192" id="3GE-2N-R5U"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="leading" secondItem="DRi-1N-Ku2" secondAttribute="trailing" constant="13" id="3TJ-ZS-HcQ"/>
+                    <constraint firstAttribute="trailing" secondItem="scg-in-yKN" secondAttribute="trailing" constant="352" id="7bl-a3-RjV"/>
                     <constraint firstAttribute="trailing" secondItem="X0H-R3-ba4" secondAttribute="trailing" constant="20" id="948-kk-FkU"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="ADb-qZ-PT0"/>
+                    <constraint firstItem="scg-in-yKN" firstAttribute="top" secondItem="R13-TD-B9n" secondAttribute="top" id="EtX-2a-GII"/>
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="firstBaseline" secondItem="R13-TD-B9n" secondAttribute="baseline" constant="39" id="MWh-Qm-Wd4"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="N9F-98-lkv"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="baseline" constant="25" id="NF7-96-JzD"/>
@@ -818,6 +824,7 @@
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="baseline" constant="25" id="iWK-fl-f2z"/>
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="jMS-Qa-1bP"/>
                     <constraint firstItem="X0H-R3-ba4" firstAttribute="bottom" secondItem="oLN-yx-WdP" secondAttribute="bottom" id="k3h-dt-feu"/>
+                    <constraint firstItem="scg-in-yKN" firstAttribute="centerY" secondItem="R13-TD-B9n" secondAttribute="centerY" id="n5d-wR-9pY"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="nb6-zg-uy2"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="oiu-Nv-78j"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="firstBaseline" id="pVi-Jc-hie"/>
@@ -838,6 +845,7 @@
             <connections>
                 <outlet property="button_connectToWaveFormGenerator" destination="R13-TD-B9n" id="N9M-xi-vRN"/>
                 <outlet property="button_printButton" destination="X0H-R3-ba4" id="guX-D7-ehy"/>
+                <outlet property="dcWaveformGeneratorStatusIndicator" destination="scg-in-yKN" id="eIU-75-r1N"/>
                 <outlet property="electrospinnerView" destination="EiT-Mj-1SZ" id="uK6-14-ExP"/>
                 <outlet property="label_elapsedTime" destination="F6u-XT-BQ0" id="aNl-aj-LcV"/>
                 <outlet property="label_waveformVoltage" destination="Hoo-zL-8vz" id="laX-e8-ttY"/>

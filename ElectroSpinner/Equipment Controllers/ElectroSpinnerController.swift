@@ -35,15 +35,10 @@ class ElectroSpinnerController {
     var waveformController: DCWaveformController? {
         didSet {
             if let _ = waveformController {
-                printStatusDataModel.connectedState = true
-            } else {printStatusDataModel.connectedState = false}
+                printStatusDataModel.dcWaveformGeneratorStatus = .connected
+            } else {printStatusDataModel.dcWaveformGeneratorStatus = .notConnected}
         }
     }
-    
-    func printStatusDidUpdate() {
-        // TODO: Implement printStatusDidUpdate
-    }
-    
 }
 
 
@@ -65,11 +60,6 @@ extension ElectroSpinnerController {
     func connectToWaveformGenerator() throws {
         print("connectToWaveformGenerator")
         try self.waveformController = self.makeWaveFormController()
-        
-        // Update state if waveform controller connected
-        if let _ = waveformController {
-            printStatusDataModel.connectedState = true
-        } else { printStatusDataModel.connectedState = false }
     }
 }
 
@@ -106,23 +96,15 @@ extension ElectroSpinnerController {
             }
         }
         
-        
-        try waveformController?.turnOn()
         waveformController?.voltage = waveformVoltage
-        try waveformController?.runWaveform(for: printTime)
         
-        printStatusDataModel.printingState = true
+        try waveformController?.runWaveform(for: printTime)
     }
         
         
     func stopPrinting() {
-        print("Test")
-        do {
-            try waveformController?.stopWaveform()
-        } catch {print(error)}
-        
+        waveformController?.stopWaveform()
         printStatusDataModel.startPrintTime = nil
-        printStatusDataModel.printingState = false
     }
     
     
@@ -134,6 +116,37 @@ extension ElectroSpinnerController {
         return 0.0
     }
 }
+
+// MARK: - PrintButtonDelegate
+extension ElectroSpinnerController: PrintButtonDelegate {
+    func printButtonDown(sender: PrintButton) {
+        print("printButtonDown")
+        // Get print status
+        let status = printStatusDataModel.printStatus
+        
+        switch status {
+        case .readyForPrinting:
+             print("starting Print")
+                   do {
+                       try self.startPrinting()
+                   } catch {
+                       print("Error when trying to print")
+                       print("Error")
+                   }
+        case .printing:
+            print("Stopping Print")
+            self.stopPrinting()
+        case .disabled, .error, .notConnected:
+            return
+        }
+
+    }
+    
+    func printButtonUp(sender: PrintButton) {
+        print("printButtonUp")
+    }
+}
+
 
 
 // MARK: - Enums

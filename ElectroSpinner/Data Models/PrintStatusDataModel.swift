@@ -10,18 +10,20 @@ import Foundation
 
 class PrintStatusDataModel {
     var delegate: PrintStatusDataModelDelegate?
+    var dcWaveformGeneratorStatus = EquipmentStatus.notConnected {
+        didSet {
+            self.printStatus = determinePrintStatus()
+        }
+    }
     
     // MARK: State Variables
-    var printButtonState = false {
+    private var printButtonState = false {
         didSet {printStatus = self.determinePrintStatus() } }
-    var safetyKeyState = false {
+    private var safetyState = true {
         didSet {printStatus = self.determinePrintStatus() } }
-    var connectedState = false {
-        didSet {printStatus = self.determinePrintStatus() } }
-    var printingState = false {
-        didSet {printStatus = self.determinePrintStatus() } }
+
     // TODO: Need to implement errorState logic
-    var errorState = false {
+    private var errorState = false {
         didSet {printStatus = self.determinePrintStatus() } }
     
     // MARK: Print Status Variables
@@ -38,15 +40,31 @@ class PrintStatusDataModel {
     var startPrintTime: DispatchTime? = nil
     
     
+    // Mark: - Init
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updatedcWaveformGeneratorStatus(_:)), name: .dcWaveformGeneratorStatusDidChange, object: nil)
+    }
+    
+    // MARK: - Functions
     func determinePrintStatus() -> PrintStatus {
-        if safetyKeyState == false {return .disabled}
-        if connectedState == false {return .notConnected}
+        if safetyState == false {return .disabled}
+        if self.dcWaveformGeneratorStatus == .notConnected {return .disabled}
         if errorState == true {return .error}
-        if printingState == true {return .printing}
+        if self.dcWaveformGeneratorStatus == .inUse {return .printing}
               
         return .readyForPrinting
     }
+    
+    @objc func updatedcWaveformGeneratorStatus(_ notification: Notification) {
+        let userInfo = notification.userInfo
+        
+        if let equipmentStatus = userInfo?[dcWaveformGeneratorStatusKey] as? EquipmentStatus {
+            dcWaveformGeneratorStatus = equipmentStatus
+        }
+    }
+        
 }
+
 
 // MARK: - PrintStatusDataModelDelegate
 protocol PrintStatusDataModelDelegate {
@@ -54,15 +72,15 @@ protocol PrintStatusDataModelDelegate {
 }
 
 
-// MARK: - PrintButtonDelegate
-extension PrintStatusDataModel: PrintButtonDelegate {
-    func printButtonDown(sender: PrintButton) {
-        print("printButtonDown")
-    }
-    
-    func printButtonUp(sender: PrintButton) {
-        print("printButtonUp")
-    }
+
+
+
+
+
+
+
+// MARK: - PrintButtonDataSource
+extension PrintStatusDataModel: PrintButtonDataSource {
     
     func printButtonStatus(sender: PrintButton) -> PrintStatus {
         return printStatus
@@ -70,15 +88,18 @@ extension PrintStatusDataModel: PrintButtonDelegate {
 }
 
 
+// Refractoring to make ElectroSpinnerViewDelegate unneeded.
+/**
 // MARK: - ElectroSpinnerViewDelegate
 extension PrintStatusDataModel: ElectroSpinnerViewDelegate {
     func userSafetyKeyDown(sender: ElectroSpinnerView) {
         print("userSafetyKeyDown")
-        safetyKeyState = true
+        safetyState = true
     }
     
     func userSafetyKeyUp(sender: ElectroSpinnerView) {
         print("userSafetyKeyUp")
-        safetyKeyState = false
+        safetyState = false
     }
 }
+ */

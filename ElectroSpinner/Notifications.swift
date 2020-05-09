@@ -12,8 +12,9 @@ import Foundation
 
 extension NSNotification.Name {
     // Notifications that are inputs of printStatus
-    static let safetyKeyStatusDidChange = NSNotification.Name("safetyKeyStatusDidChange")
+    static let safetyStatusDidChange = NSNotification.Name("safetyStatusDidChange")
     static let connectionStatusDidChange = NSNotification.Name("connectionStatusDidChange")
+    static let dcWaveformGeneratorStatusDidChange = NSNotification.Name("dcWaveformGeneratorStatusDidChange")
     
     // Notifications that are Outputs of PrintStatus
     static let printStatusDidChange = NSNotification.Name("printStatusDidChange")
@@ -22,3 +23,5 @@ extension NSNotification.Name {
 // MARK: Strings for Keys
 
 let printStatusKey = "printStatusKey"
+let dcWaveformGeneratorStatusKey = "dcWaveformGeneratorStatusKey"
+

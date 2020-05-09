@@ -25,9 +25,9 @@ protocol WaveformController: class {
     
     func updateWaveform(_ waveform: WaveformType) throws
     
-    func turnOn() throws
+    func runWaveform(for runTime: Double) throws
     
-    func turnOff() throws
+    func stopWaveform() throws
 }
 
 
