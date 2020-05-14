@@ -23,6 +23,7 @@ class ElectroSpinnerController {
             waveformController?.voltage = waveformVoltage
         }
     }
+    
     var waveformVoltage: Double {
         get {return electrospinnerVoltage/amplifierGain }
     }

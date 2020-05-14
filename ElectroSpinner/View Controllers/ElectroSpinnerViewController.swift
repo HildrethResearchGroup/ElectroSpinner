@@ -22,6 +22,7 @@ class ElectroSpinnerViewController: NSViewController {
     @IBOutlet weak var textField_setRunTime: NSTextField!
     @IBOutlet weak var label_elapsedTime: NSTextField!
     
+    
     // MARK: - Elapsed Time Variables
     private var timer = Timer()
     var isTimerRunning = false
