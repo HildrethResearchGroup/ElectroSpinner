@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -686,111 +685,15 @@
         <window title="ElectroSpinner" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="187"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="2560" height="1417"/>
+            <rect key="contentRect" x="335" y="390" width="345" height="187"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
             <value key="minSize" type="size" width="480" height="187"/>
             <value key="maxSize" type="size" width="480" height="187"/>
             <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="187"/>
+                <rect key="frame" x="0.0" y="0.0" width="345" height="187"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DRi-1N-Ku2">
-                        <rect key="frame" x="18" y="108" width="163" height="16"/>
-                        <textFieldCell key="cell" selectable="YES" title="Electrospinner Voltage [V]" id="aAK-t7-C8i">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoB-Fy-flh">
-                        <rect key="frame" x="18" y="83" width="163" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Waveform Set Voltage [V]" id="8cF-g4-ekv">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hoo-zL-8vz">
-                        <rect key="frame" x="190" y="83" width="100" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ikJ-Q0-JPd">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hnc-5P-KMS">
-                        <rect key="frame" x="192" y="105" width="96" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="96" id="Ze7-sK-MbR"/>
-                        </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="bVe-6j-JON">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="HPt-fJ-3OH">
-                                <real key="minimum" value="-10000"/>
-                                <real key="maximum" value="10000"/>
-                            </numberFormatter>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <outlet property="nextKeyView" destination="gaJ-7A-7by" id="4px-F6-8bf"/>
-                        </connections>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oLN-yx-WdP">
-                        <rect key="frame" x="18" y="18" width="163" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Elapsed Time [sec]" id="mml-d7-FYK">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-XT-BQ0">
-                        <rect key="frame" x="190" y="18" width="100" height="16"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KRB-Z0-U41">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Amc-oE-OTF">
-                        <rect key="frame" x="18" y="43" width="163" height="16"/>
-                        <textFieldCell key="cell" selectable="YES" title="Run Time [sec]" id="i1w-FP-9rc">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-7A-7by">
-                        <rect key="frame" x="192" y="40" width="96" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="96" id="ef3-yJ-Opf"/>
-                        </constraints>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="EAZ-7j-Duv">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Njd-n2-t09">
-                                <real key="minimum" value="0.0"/>
-                            </numberFormatter>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <outlet property="nextKeyView" destination="EiT-Mj-1SZ" id="IKM-wJ-kZf"/>
-                        </connections>
-                    </textField>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="X0H-R3-ba4" customClass="PrintButton" customModule="ElectroSpinner" customModuleProvider="target">
-                        <rect key="frame" x="354" y="18" width="106" height="106"/>
-                        <constraints>
-                            <constraint firstAttribute="width" secondItem="X0H-R3-ba4" secondAttribute="height" id="vCy-OP-DCC"/>
-                        </constraints>
-                    </customView>
-                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="scg-in-yKN" customClass="EquipmentStatusIndicator" customModule="ElectroSpinner" customModuleProvider="target">
-                        <rect key="frame" x="20" y="147" width="16" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="16" id="1mG-iB-Uam"/>
-                            <constraint firstAttribute="width" constant="16" id="fP7-lG-hOv"/>
-                        </constraints>
-                    </customView>
-                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R13-TD-B9n">
+                    <button toolTip="Push to Connect to Waveform Generator" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R13-TD-B9n">
                         <rect key="frame" x="38" y="137" width="92" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="3Tb-GY-UL1"/>
@@ -804,54 +707,161 @@
                             <outlet property="nextKeyView" destination="hnc-5P-KMS" id="mTk-6D-Hhm"/>
                         </connections>
                     </button>
+                    <switch toolTip="Toggle to turn voltage on." horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="PYh-NK-mJA">
+                        <rect key="frame" x="186" y="142" width="42" height="24"/>
+                        <connections>
+                            <action selector="startOrStopPrinting:" target="YfV-cA-h8u" id="f4y-44-Pgi"/>
+                        </connections>
+                    </switch>
+                    <textField toolTip="Voltage to run electrospinner at" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hnc-5P-KMS">
+                        <rect key="frame" x="188" y="105" width="96" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="Ze7-sK-MbR"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="bVe-6j-JON">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="HPt-fJ-3OH">
+                                <real key="minimum" value="-10000"/>
+                                <real key="maximum" value="10000"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="gaJ-7A-7by" id="4px-F6-8bf"/>
+                        </connections>
+                    </textField>
+                    <textField toolTip="Time to run the electrospinner for." verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gaJ-7A-7by">
+                        <rect key="frame" x="188" y="40" width="96" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="96" id="ef3-yJ-Opf"/>
+                        </constraints>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="0" drawsBackground="YES" id="EAZ-7j-Duv">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" maximumFractionDigits="3" id="Njd-n2-t09">
+                                <real key="minimum" value="0.0"/>
+                            </numberFormatter>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <outlet property="nextKeyView" destination="EiT-Mj-1SZ" id="IKM-wJ-kZf"/>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DRi-1N-Ku2">
+                        <rect key="frame" x="18" y="108" width="164" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="160" id="JT8-dG-UaZ"/>
+                        </constraints>
+                        <textFieldCell key="cell" selectable="YES" title="Electrospinner Voltage [V]" id="aAK-t7-C8i">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IoB-Fy-flh">
+                        <rect key="frame" x="18" y="83" width="161" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Waveform Set Voltage [V]" id="8cF-g4-ekv">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hoo-zL-8vz">
+                        <rect key="frame" x="186" y="83" width="100" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="ikJ-Q0-JPd">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oLN-yx-WdP">
+                        <rect key="frame" x="18" y="18" width="120" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Elapsed Time [sec]" id="mml-d7-FYK">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-XT-BQ0">
+                        <rect key="frame" x="186" y="18" width="100" height="16"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KRB-Z0-U41">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Amc-oE-OTF">
+                        <rect key="frame" x="18" y="43" width="96" height="16"/>
+                        <textFieldCell key="cell" selectable="YES" title="Run Time [sec]" id="i1w-FP-9rc">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <customView toolTip="Green = Ready to Print.  Orange = Not Connected to Waveform Generator.  Red = Printing. " translatesAutoresizingMaskIntoConstraints="NO" id="scg-in-yKN" customClass="EquipmentStatusIndicator" customModule="ElectroSpinner" customModuleProvider="target">
+                        <rect key="frame" x="20" y="147" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="1mG-iB-Uam"/>
+                            <constraint firstAttribute="width" constant="16" id="fP7-lG-hOv"/>
+                        </constraints>
+                    </customView>
+                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nM9-NL-Q6W">
+                        <rect key="frame" x="232" y="147" width="94" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="rF0-N2-slL"/>
+                        </constraints>
+                        <textFieldCell key="cell" selectable="YES" title="Voltage Off/On" id="JaI-0d-h5I">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="nM9-NL-Q6W" secondAttribute="trailing" constant="21" id="0r0-yV-BKQ"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="22" id="1uY-s3-z3p"/>
                     <constraint firstItem="R13-TD-B9n" firstAttribute="leading" secondItem="scg-in-yKN" secondAttribute="trailing" constant="8" symbolic="YES" id="2wS-cT-Yl7"/>
-                    <constraint firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" constant="192" id="3GE-2N-R5U"/>
-                    <constraint firstItem="hnc-5P-KMS" firstAttribute="leading" secondItem="DRi-1N-Ku2" secondAttribute="trailing" constant="13" id="3TJ-ZS-HcQ"/>
                     <constraint firstItem="scg-in-yKN" firstAttribute="centerY" secondItem="R13-TD-B9n" secondAttribute="centerY" id="3ak-rX-CrH"/>
-                    <constraint firstAttribute="trailing" secondItem="X0H-R3-ba4" secondAttribute="trailing" constant="20" id="948-kk-FkU"/>
-                    <constraint firstItem="Amc-oE-OTF" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="ADb-qZ-PT0"/>
+                    <constraint firstItem="PYh-NK-mJA" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="DOV-NI-0yP"/>
+                    <constraint firstItem="nM9-NL-Q6W" firstAttribute="leading" secondItem="PYh-NK-mJA" secondAttribute="trailing" constant="8" symbolic="YES" id="H2X-Cf-jtN"/>
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="firstBaseline" secondItem="R13-TD-B9n" secondAttribute="baseline" constant="39" id="MWh-Qm-Wd4"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="baseline" constant="25" id="NF7-96-JzD"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="OF7-FC-mBb"/>
-                    <constraint firstItem="IoB-Fy-flh" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="Okx-OX-oHS"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="XN1-8D-JnK"/>
+                    <constraint firstItem="hnc-5P-KMS" firstAttribute="leading" secondItem="DRi-1N-Ku2" secondAttribute="trailing" constant="8" symbolic="YES" id="aQ0-oa-OFp"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="firstBaseline" secondItem="Amc-oE-OTF" secondAttribute="firstBaseline" id="eBK-wP-cnM"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="centerY" secondItem="oLN-yx-WdP" secondAttribute="centerY" id="eU3-7h-Amf"/>
                     <constraint firstItem="gaJ-7A-7by" firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" id="euh-t5-IBo"/>
+                    <constraint firstItem="nM9-NL-Q6W" firstAttribute="centerY" secondItem="PYh-NK-mJA" secondAttribute="centerY" id="fIc-Bf-t78"/>
+                    <constraint firstItem="PYh-NK-mJA" firstAttribute="centerY" secondItem="R13-TD-B9n" secondAttribute="centerY" id="fYa-ja-o89"/>
                     <constraint firstItem="DRi-1N-Ku2" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="guY-VP-NeB"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="centerY" secondItem="IoB-Fy-flh" secondAttribute="centerY" id="hXd-cj-vRj"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R13-TD-B9n" secondAttribute="trailing" constant="10" id="iOZ-ew-OS6"/>
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="baseline" constant="25" id="iWK-fl-f2z"/>
                     <constraint firstItem="IoB-Fy-flh" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="jMS-Qa-1bP"/>
                     <constraint firstItem="scg-in-yKN" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="jqq-ns-nl3"/>
-                    <constraint firstItem="X0H-R3-ba4" firstAttribute="bottom" secondItem="oLN-yx-WdP" secondAttribute="bottom" id="k3h-dt-feu"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="nb6-zg-uy2"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="leading" secondItem="hnc-5P-KMS" secondAttribute="leading" id="oiu-Nv-78j"/>
                     <constraint firstItem="hnc-5P-KMS" firstAttribute="firstBaseline" secondItem="DRi-1N-Ku2" secondAttribute="firstBaseline" id="pVi-Jc-hie"/>
                     <constraint firstItem="Hoo-zL-8vz" firstAttribute="trailing" secondItem="hnc-5P-KMS" secondAttribute="trailing" id="q3R-Jc-T58"/>
                     <constraint firstItem="oLN-yx-WdP" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="20" id="reH-Hv-XH2"/>
-                    <constraint firstItem="X0H-R3-ba4" firstAttribute="top" secondItem="DRi-1N-Ku2" secondAttribute="top" id="u2d-71-cx4"/>
                     <constraint firstItem="F6u-XT-BQ0" firstAttribute="trailing" secondItem="gaJ-7A-7by" secondAttribute="trailing" id="vzj-eY-bGV"/>
-                    <constraint firstItem="oLN-yx-WdP" firstAttribute="trailing" secondItem="DRi-1N-Ku2" secondAttribute="trailing" id="waU-an-nOH"/>
                     <constraint firstItem="Amc-oE-OTF" firstAttribute="top" secondItem="IoB-Fy-flh" secondAttribute="bottom" constant="24" id="xFA-w0-eBY"/>
                 </constraints>
                 <connections>
                     <outlet property="nextKeyView" destination="R13-TD-B9n" id="fGA-si-hpc"/>
                 </connections>
             </view>
-            <point key="canvasLocation" x="132" y="-212.5"/>
+            <point key="canvasLocation" x="-194.5" y="-292.5"/>
         </window>
         <viewController id="YfV-cA-h8u" customClass="ElectroSpinnerViewController" customModule="ElectroSpinner" customModuleProvider="target">
             <connections>
                 <outlet property="button_connectToWaveFormGenerator" destination="R13-TD-B9n" id="N9M-xi-vRN"/>
-                <outlet property="button_printButton" destination="X0H-R3-ba4" id="guX-D7-ehy"/>
                 <outlet property="dcWaveformGeneratorStatusIndicator" destination="scg-in-yKN" id="eIU-75-r1N"/>
                 <outlet property="electrospinnerView" destination="EiT-Mj-1SZ" id="uK6-14-ExP"/>
                 <outlet property="label_elapsedTime" destination="F6u-XT-BQ0" id="aNl-aj-LcV"/>
                 <outlet property="label_waveformVoltage" destination="Hoo-zL-8vz" id="laX-e8-ttY"/>
+                <outlet property="switch_print" destination="PYh-NK-mJA" id="7IC-Mm-Ttg"/>
                 <outlet property="textField_setElectroSpinnerVoltage" destination="hnc-5P-KMS" id="CW1-Li-xzj"/>
                 <outlet property="textField_setRunTime" destination="gaJ-7A-7by" id="E4b-ZE-lEP"/>
                 <outlet property="view" destination="EiT-Mj-1SZ" id="BTs-ct-Ho9"/>

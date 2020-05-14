@@ -8,28 +8,38 @@
 
 import Foundation
 
+// MARK: Status Ehums
+enum EquipmentStatus {
+    case notConnected
+    case connected
+    case inUse
+}
+
+enum PrintStatus:Int {
+    case notConnected
+    case disabled
+    case readyForPrinting
+    case printing
+    case error
+}
+
+/**
+ Data model that either holds or accesses the statespace of the electrospinner
+ */
 class PrintStatusDataModel {
-    var delegate: PrintStatusDataModelDelegate?
+    // Status of the DCWaveformGenerator.  Default is to be notConnected
     var dcWaveformGeneratorStatus = EquipmentStatus.notConnected {
         didSet {
-            self.printStatus = determinePrintStatus()
+            if dcWaveformGeneratorStatus != oldValue {
+                self.printStatus = determinePrintStatus()
+                let notification = Notification(name: .dcWaveformGeneratorStatusDidChange, object: self, userInfo: [dcWaveformGeneratorStatusDidChangeKey : dcWaveformGeneratorStatus])
+                NotificationCenter.default.post(notification)
+            }
         }
     }
     
     // MARK: State Variables
-    /**
-    var printButtonState: Bool {
-        get {
-            switch printStatus {
-            case .printing, .readyForPrinting:
-                return true
-            case .notConnected, .disabled, .error:
-                return false
-            }
-        }
-    }
-     */
-    
+    // Status of the safetyState varible.  This variable isn't currently used since the electrospinner is in an enclosed glove box.  As a result, the safetyState is currently set to "true" with no code implemented to change it.
     private var safetyState = true {
         didSet {printStatus = self.determinePrintStatus() } }
 
@@ -41,8 +51,7 @@ class PrintStatusDataModel {
     var printStatus = PrintStatus.disabled {
         didSet {
             if printStatus != oldValue {
-                delegate?.printStatusDidUpdate(updatedPrintStatus: printStatus)
-                let notification = Notification(name: .printStatusDidChange, object: self, userInfo: [printStatusKey: printStatus])
+                let notification = Notification(name: .printStatusDidChange, object: self, userInfo: [printStatusDidChangeKey: printStatus])
                 NotificationCenter.default.post(notification)
                 
             }
@@ -70,7 +79,7 @@ class PrintStatusDataModel {
     @objc func updatedcWaveformGeneratorStatus(_ notification: Notification) {
         let userInfo = notification.userInfo
         
-        if let equipmentStatus = userInfo?[dcWaveformGeneratorStatusKey] as? EquipmentStatus {
+        if let equipmentStatus = userInfo?[dcWaveformGeneratorStatusDidChangeKey] as? EquipmentStatus {
             dcWaveformGeneratorStatus = equipmentStatus
         }
     }
@@ -78,40 +87,6 @@ class PrintStatusDataModel {
 }
 
 
-// MARK: - PrintStatusDataModelDelegate
-protocol PrintStatusDataModelDelegate {
-    func printStatusDidUpdate(updatedPrintStatus: PrintStatus)
-}
 
 
 
-
-
-
-
-
-
-// MARK: - PrintButtonDataSource
-extension PrintStatusDataModel: PrintButtonDataSource {
-    
-    func printButtonStatus(sender: PrintButton) -> PrintStatus {
-        return printStatus
-    }
-}
-
-
-// Refractoring to make ElectroSpinnerViewDelegate unneeded.
-/**
-// MARK: - ElectroSpinnerViewDelegate
-extension PrintStatusDataModel: ElectroSpinnerViewDelegate {
-    func userSafetyKeyDown(sender: ElectroSpinnerView) {
-        print("userSafetyKeyDown")
-        safetyState = true
-    }
-    
-    func userSafetyKeyUp(sender: ElectroSpinnerView) {
-        print("userSafetyKeyUp")
-        safetyState = false
-    }
-}
- */

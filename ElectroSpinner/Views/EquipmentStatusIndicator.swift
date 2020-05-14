@@ -9,9 +9,9 @@
 import Cocoa
 
 class EquipmentStatusIndicator: NSView {
-    let color_notConnected = NSColor.red
+    let color_notConnected = NSColor.orange
     let color_connected = NSColor.green
-    let color_inUse = NSColor.orange
+    let color_inUse = NSColor.red
     
     var status: EquipmentStatus = .notConnected {
         didSet {

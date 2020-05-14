@@ -9,19 +9,22 @@
 import Foundation
 
 
-
+/// NSNotificatio.Name Extension to hold the namespace for Notifications
 extension NSNotification.Name {
-    // Notifications that are inputs of printStatus
-    static let safetyStatusDidChange = NSNotification.Name("safetyStatusDidChange")
-    static let connectionStatusDidChange = NSNotification.Name("connectionStatusDidChange")
-    static let dcWaveformGeneratorStatusDidChange = NSNotification.Name("dcWaveformGeneratorStatusDidChange")
+    // Notification that the safety lockout status did change
+    static let safetyStatusDidChange = NSNotification.Name(safetyStatusDidChangeKey)
     
-    // Notifications that are Outputs of PrintStatus
-    static let printStatusDidChange = NSNotification.Name("printStatusDidChange")
+    // Notification that the state of the DCWaveform Generator has changed
+    static let dcWaveformGeneratorStatusDidChange = NSNotification.Name(dcWaveformGeneratorStatusDidChangeKey)
+    
+    // Notifications the print status did change
+    static let printStatusDidChange = NSNotification.Name(printStatusDidChangeKey)
 }
 
-// MARK: Strings for Keys
+// MARK: Strings to use for Notificaiton.Name and as the keys for Notification.userinfo
+let safetyStatusDidChangeKey = "safetyStatusDidChangeKey"
+let dcWaveformGeneratorStatusDidChangeKey = "dcWaveformGeneratorStatusDid"
+let printStatusDidChangeKey = "printStatusDidChangeKey"
 
-let printStatusKey = "printStatusKey"
-let dcWaveformGeneratorStatusKey = "dcWaveformGeneratorStatusKey"
+
 

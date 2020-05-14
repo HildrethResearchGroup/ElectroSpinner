@@ -8,8 +8,4 @@
 
 import Foundation
 
-enum EquipmentStatus {
-    case notConnected
-    case connected
-    case inUse
-}
+

@@ -14,7 +14,7 @@ class DCWaveformController: WaveformController {
     // MARK: - Properties
     private var equipmentStatus = EquipmentStatus.notConnected {
         didSet {
-            let notification = Notification(name: .dcWaveformGeneratorStatusDidChange, object: self, userInfo: [dcWaveformGeneratorStatusKey : equipmentStatus])
+            let notification = Notification(name: .dcWaveformGeneratorStatusDidChange, object: self, userInfo: [dcWaveformGeneratorStatusDidChangeKey : equipmentStatus])
             NotificationCenter.default.post(notification)
         }
     }
@@ -43,7 +43,7 @@ class DCWaveformController: WaveformController {
     }
     
     
-    var impedence: ImpedenceSetting = .standard {
+    var impedence: ImpedenceSetting = .infinite {
         didSet {
             do {
                 try updateImpedence(impedence)
@@ -75,9 +75,16 @@ class DCWaveformController: WaveformController {
         
         self.instrument = newInstrument
         self.outputChannel = outputChannel
+        self.waveformType = .DC
         self.equipmentStatus = .connected
         
         try updateImpedence(self.impedence)
+        try updateVoltage(self.voltage)
+        try updateWaveform(self.waveformType)
+    }
+    
+    func updateWaveformSettings() {
+        
     }
 }
 
@@ -141,15 +148,19 @@ extension DCWaveformController {
 // MARK: - Running the Waveform
 extension DCWaveformController  {
     func runWaveform(for runTime: Double) throws {
-        // Rerun turnOn and setVoltage to make sure the system is definitely on an ready to run the waveform
+        
+        // Rerun setVoltage to make sure the system is definitely on an ready to run the waveform
         try updateVoltage(voltage)
-        self.equipmentStatus = .inUse
+        
+        // Turn the channel on.
+        try turnChannelOn()
         
         // Make sure that the input runTime isn't negative
         if runTime < 0 {return}
         
         // Calculate the run time
         let runLength = DispatchTime.now() + Double(runTime)
+        
         
         // Have stopWaveform run after runLength
         
@@ -164,12 +175,16 @@ extension DCWaveformController  {
     func stopWaveform() {
         do {
             try instrument?.write("OUTPUT\(outputChannel) OFF")
-            self.equipmentStatus = .connected
         } catch {
             print(error)
             self.equipmentStatus = .notConnected
         }
-
+        self.equipmentStatus = .connected
+    }
+    
+    func turnChannelOn() throws {
+        try instrument?.write("OUTPUT\(outputChannel) ON")
+        self.equipmentStatus = .inUse
     }
 }
 

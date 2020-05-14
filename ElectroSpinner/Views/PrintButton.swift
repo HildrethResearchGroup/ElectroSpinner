@@ -10,9 +10,6 @@ import Cocoa
 
 //@IBDesignable
 class PrintButton: NSButton {
-    var delegate: PrintButtonDelegate? = nil
-    var datasource: PrintButtonDataSource? = nil
-    
     // MARK: State
     var status = PrintStatus.disabled {
         didSet {
@@ -26,33 +23,11 @@ class PrintButton: NSButton {
     }
     
     // MARK: Colors
-    let color_disabled = NSColor.red
+    let color_disabled = NSColor.orange
     let color_readyForPrinting = NSColor.green
-    let color_printing = NSColor.orange
+    let color_printing = NSColor.red
     //let color_finishedPrinting = NSColor.orange
     let color_error = NSColor.red
-    
-    
-    // MARK: User Interactions
-    override func mouseDown(with event: NSEvent) {
-        print(self.status)
-        //if self.status == .disabled {return}
-        
-        self.delegate?.printButtonDown(sender: self)
-        if let datasourceStatus = self.datasource?.printButtonStatus(sender: self) {
-            self.status = datasourceStatus
-        } else {self.status = .disabled }
-    }
-    
-    
-    
-    override func mouseUp(with event: NSEvent) {
-        //if self.status == .disabled {return}
-        self.delegate?.printButtonUp(sender: self)
-        if let datasourceStatus = self.datasource?.printButtonStatus(sender: self) {
-            self.status = datasourceStatus
-        } else {self.status = .disabled }
-    }
 
 }
 
@@ -107,21 +82,12 @@ extension PrintButton {
         ovalPath.stroke()
     }
     
+    override func mouseDown(with event: NSEvent) {
+        print("mouseDown")
+        super.mouseDown(with: event)
+    }
+    
 }
-
-
-// MARK: - Delegate Protocol
-protocol PrintButtonDelegate: AnyObject {
-    func printButtonDown(sender: PrintButton)
-    func printButtonUp(sender: PrintButton)
-}
-
-
-// MARK: - DataSource Protocol
-protocol PrintButtonDataSource: AnyObject {
-     func printButtonStatus(sender: PrintButton) -> PrintStatus
-}
-
 
 
 
