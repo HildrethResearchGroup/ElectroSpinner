@@ -687,8 +687,8 @@
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="345" height="187"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1129"/>
-            <value key="minSize" type="size" width="480" height="187"/>
-            <value key="maxSize" type="size" width="480" height="187"/>
+            <value key="minSize" type="size" width="345" height="187"/>
+            <value key="maxSize" type="size" width="345" height="187"/>
             <view key="contentView" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="345" height="187"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -786,6 +786,9 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="F6u-XT-BQ0">
                         <rect key="frame" x="186" y="18" width="100" height="16"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="KRB-Z0-U41">
+                            <numberFormatter key="formatter" formatterBehavior="custom10_4" positiveFormat="#,##0.0" numberStyle="decimal" formatWidth="-1" minimumIntegerDigits="1" maximumIntegerDigits="2000000000" minimumFractionDigits="1" maximumFractionDigits="1" id="3fE-Sa-ofD">
+                                <real key="minimum" value="0.0"/>
+                            </numberFormatter>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -793,6 +796,9 @@
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Amc-oE-OTF">
                         <rect key="frame" x="18" y="43" width="96" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="92" id="tYM-FO-kfC"/>
+                        </constraints>
                         <textFieldCell key="cell" selectable="YES" title="Run Time [sec]" id="i1w-FP-9rc">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>

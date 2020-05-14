@@ -123,26 +123,6 @@ extension DCWaveformController {
         try instrument?.write("SOURce\(outputChannel):\(waveformCommand)")
     }
     
-    
-    /**
-    func turnOn() throws {
-        // Set the waveform (DC in this case)
-        try updateWaveform(self.waveformType)
-        // Turn on with 0.0 volts for safety
-        try updateVoltage(startupVoltage)
-
-        try instrument?.write("OUTPUT\(outputChannel) ON")
-        self.equipmentStatus = .inUse
-
-    }
-    
-
-    func turnOff() throws {
-        try updateVoltage(turnedOffVoltage)
-        try instrument?.write("OUTPUT\(outputChannel) OFF")
-        self.equipmentStatus = .connected
-    }
- */
 }
 
 // MARK: - Running the Waveform

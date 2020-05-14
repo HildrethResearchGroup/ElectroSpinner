@@ -29,6 +29,7 @@ class ElectroSpinnerController {
     
     let amplifierGain = 1000.0
     var printTime = 0.0
+        
     
     
     // MARK: Wavefunction Controller
@@ -107,6 +108,7 @@ extension ElectroSpinnerController {
         
         try waveformController?.runWaveform(for: printTime)
         
+        self.printStatusDataModel.startPrintTime = DispatchTime.now()
         self.printStatusDataModel.printStatus = .printing
         
     }
@@ -120,11 +122,18 @@ extension ElectroSpinnerController {
     
     
     
-    func elapsedTime() -> Double {
-        if printStatusDataModel.startPrintTime == nil {
-            return 0.0
-        }
-        return 0.0
+    func elapsedTime() -> Double? {
+        
+        // Note, DispatchTime.rawValue is in nanoseconds
+        guard let startTime =  printStatusDataModel.startPrintTime else {return nil}
+        
+        let startTimeRaw = Double(startTime.rawValue)
+        let currentTime = Double(DispatchTime.now().rawValue)
+        
+        // Convert elapsedTime from nanoseconds to seconds
+        let elapsedTime = (currentTime - startTimeRaw) * 0.000000001
+        
+        return elapsedTime
     }
 }
 

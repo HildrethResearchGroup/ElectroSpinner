@@ -11,7 +11,6 @@ import Cocoa
 class ElectroSpinnerViewController: NSViewController {
     
     // MARK: IBOutlets
-    
     @IBOutlet weak var dcWaveformGeneratorStatusIndicator: EquipmentStatusIndicator!
     
     @IBOutlet weak var button_connectToWaveFormGenerator: NSButton!
@@ -23,10 +22,23 @@ class ElectroSpinnerViewController: NSViewController {
     @IBOutlet weak var textField_setRunTime: NSTextField!
     @IBOutlet weak var label_elapsedTime: NSTextField!
     
+    // MARK: - Elapsed Time Variables
+    private var timer = Timer()
+    var isTimerRunning = false
+    private var elapsedTime: Double? {
+        didSet {
+            guard let unwrappedElapsedTime = elapsedTime else {
+                self.label_elapsedTime.stringValue = "0.0"
+                return
+            }
+            self.label_elapsedTime.stringValue = String(unwrappedElapsedTime)
+        }
+    }
     
     // MARK: - Electrospinner Controller
     let electrospinnerController: ElectroSpinnerController
     let printStatusDataModel: PrintStatusDataModel
+    
     
     
     // MARK: - Initializers
@@ -94,10 +106,32 @@ class ElectroSpinnerViewController: NSViewController {
                 try  self.electrospinnerController.startPrinting()
             } catch  {
                 print("Error tyring to print")
+                return
             }
         case .printing:
             self.electrospinnerController.stopPrinting()
+            self.stopTimer()
+            return
         }
+        
+        self.runTimer()
+    }
+    
+    
+    // MARK: - Elapsed Time
+    func runTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector((self.updateElapsedTime))), userInfo: nil, repeats: true)
+        self.isTimerRunning = true
+    }
+    
+    func stopTimer() {
+        timer.invalidate()
+        self.elapsedTime = nil
+        self.isTimerRunning = false
+    }
+    
+    @objc func updateElapsedTime() {
+        self.elapsedTime = self.electrospinnerController.elapsedTime()
     }
     
     // MARK: - Communicating with the Electrospinner Controller
@@ -138,8 +172,11 @@ class ElectroSpinnerViewController: NSViewController {
             self.dcWaveformGeneratorStatusIndicator.status = equipmentStatus
             self.updatePrintButtonState()
         }
-        if let _ = userInfo[printStatusDidChangeKey] as? PrintStatus {
+        if let printStatus = userInfo[printStatusDidChangeKey] as? PrintStatus {
             self.updatePrintButtonState()
+            if printStatus != .printing && isTimerRunning == true {
+                self.stopTimer()
+            }
         }
         
     }
