@@ -59,6 +59,7 @@ extension ElectroSpinnerController {
             return nil
         }
         
+        
         self.printStatusDataModel.dcWaveformGeneratorStatus = .connected
         return controller
     }
@@ -67,8 +68,6 @@ extension ElectroSpinnerController {
     func connectToWaveformGenerator() throws {
         print("connectToWaveformGenerator")
         try self.waveformController = self.makeWaveFormController()
-        
-        
     }
 }
 
